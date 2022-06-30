@@ -17,18 +17,20 @@ const Main = () => {
         filter='brightness(0.6)'
         maxH={['400px']}
       />
-      <Heading
-        textAlign='center'
-        pt='6'
-        pb='4'
-        fontSize='3xl'
-        color='gray.700'
-        fontWeight='black'
-        fontFamily='Nunito'
-        letterSpacing='wide'
-      >
-        Our Collection
-      </Heading>
+      <Box bg='gray.300' mb='6'>
+        <Heading
+          textAlign='center'
+          pt='3'
+          pb='2'
+          fontSize='3xl'
+          color='gray.600'
+          fontWeight='black'
+          fontFamily='Nunito'
+          letterSpacing='wide'
+        >
+          Our Collection
+        </Heading>
+      </Box>
       <Container
         display='flex'
         gap='10'

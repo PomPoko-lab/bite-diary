@@ -5,16 +5,20 @@ import {
   ListItem,
   Link,
   Icon,
+  Image,
   useDisclosure,
   Drawer,
   DrawerContent,
-  DrawerHeader,
   DrawerBody,
   DrawerOverlay,
   DrawerCloseButton,
 } from '@chakra-ui/react/';
 
+import ButtonStyle from './ButtonStyle';
+
 import { AiOutlineMenu } from 'react-icons/ai';
+import logoIcon from '../assets/smallIcon.jpg';
+import brandName from '../assets/brandName.jpg';
 
 // Needs profile, favorites, and heading(h1)
 
@@ -24,24 +28,41 @@ const Header = () => {
   return (
     <Container as='header' px={['0']} maxW='container.2xl'>
       <Box
-        bg='teal.700'
-        display='flex'
-        justifyContent='center'
-        alignItems='center'
-        onClick={onOpen}
-        position={['fixed']}
-        top='5'
-        left='5'
+        as='nav'
+        bg='gray.50'
         p='2'
-        borderRadius='lg'
-        zIndex='1'
+        display='flex'
+        alignItems='center'
+        gap='4'
       >
-        <Icon as={AiOutlineMenu} boxSize='8' color='gray.100' />
+        <Box
+          as='button'
+          onClick={onOpen}
+          display='grid'
+          placeItems='center'
+          borderRadius='lg'
+        >
+          <Icon as={AiOutlineMenu} boxSize='8' color='gray.600' />
+        </Box>
+        <Image
+          boxSize='8'
+          src={logoIcon}
+          alt='bite diary small logo'
+          borderRadius='lg'
+          border='2px solid rgba(72, 135, 54,0.4)'
+          ms='auto'
+          p='1'
+        />
+        <Image
+          src={brandName}
+          maxW='48'
+          alt='bite diary brand name small'
+          borderRadius='md'
+        />
       </Box>
-      <Box as='nav'></Box>
       <Drawer isOpen={isOpen} placement='top' onClose={onClose} color>
         <DrawerOverlay />
-        <DrawerContent bg='teal.700' color='gray.100'>
+        <DrawerContent bg='gray.50' color='gray.600'>
           <DrawerCloseButton />
           <DrawerBody p='0'>
             <UnorderedList
@@ -52,18 +73,22 @@ const Header = () => {
               fontWeight='bold'
               letterSpacing='wide'
             >
-              <Link _hover={{ style: { textDecoration: 'none' } }}>
+              <Link _hover={{ textDecoration: 'none' }}>
                 <ListItem py='5'>Home</ListItem>
               </Link>
-              <Link _hover={{ style: { textDecoration: 'none' } }}>
+              <Link _hover={{ textDecoration: 'none' }}>
                 <ListItem py='5'>About</ListItem>
               </Link>
-              <Link _hover={{ style: { textDecoration: 'none' } }}>
+              <Link _hover={{ textDecoration: 'none' }}>
                 <ListItem py='5'>Sign in</ListItem>
               </Link>
-              <Link _hover={{ style: { textDecoration: 'none' } }}>
-                <ListItem py='5'>Create New Account</ListItem>
-              </Link>
+              <ListItem py='2'>
+                <ButtonStyle>
+                  <Link _hover={{ textDecoration: 'none' }}>
+                    Create New Account
+                  </Link>
+                </ButtonStyle>
+              </ListItem>
             </UnorderedList>
           </DrawerBody>
         </DrawerContent>

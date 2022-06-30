@@ -7,33 +7,36 @@ import {
   OrderedList,
   ListItem,
   Text,
-  Divider,
 } from '@chakra-ui/react';
 
 import img from '../assets/vn-comtam.jpg';
 
 const cardStyles = {
-  bg: 'gray.200',
-  border: '1px solid rgba(0,0,0,0.1)',
+  bg: 'green.200',
+  border: '2px solid rgba(72, 135, 54,0.3)',
   shadow: 'base',
-  p: '2',
+  p: '4',
   mx: '3',
   mb: '4',
   borderRadius: 'sm',
 };
 
-const listStyles = {
-  textAlign: 'center',
-};
-
 const headingStyles = {
   fontFamily: 'Nunito',
   mb: '2',
+  p: '2',
+  color: 'gray.800',
 };
 
 const Item = () => {
   return (
     <Container as='main' px={['0']}>
+      <Box bg='gray.300'>
+        <Heading {...headingStyles} pb='0' mb='0'>
+          Title
+        </Heading>
+        <Text px='2'>Posted by: Name</Text>
+      </Box>
       <Image
         src={img}
         alt='Bite Diary Hero'
@@ -42,16 +45,19 @@ const Item = () => {
         filter='brightness(0.6)'
         maxH={['400px']}
       />
-      <Box as='article' p='3'>
-        <Heading {...headingStyles} mb='0'>
-          Title
-        </Heading>
-        <Text mb='3'>Posted by: Name</Text>
+      <Box as='article'>
         <Heading as='h3' {...headingStyles}>
           Ingredients
         </Heading>
         <Box as='section' {...cardStyles}>
-          <UnorderedList listStyleType='none' m='0' {...listStyles}>
+          <UnorderedList
+            listStyleType='none'
+            m='0'
+            textAlign='center'
+            color='gray.700'
+            spacing='2'
+            fontWeight='bold'
+          >
             <ListItem>Meat</ListItem>
             <ListItem>Meat</ListItem>
             <ListItem>Meat</ListItem>
@@ -62,7 +68,7 @@ const Item = () => {
           Instructions
         </Heading>
         <Box as='section' {...cardStyles}>
-          <OrderedList>
+          <OrderedList color='gray.700' spacing='2'>
             <ListItem>Cook the food</ListItem>
             <ListItem>Cook the food</ListItem>
             <ListItem>Cook the food</ListItem>

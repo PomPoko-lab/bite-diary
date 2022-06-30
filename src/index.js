@@ -11,7 +11,6 @@ const theme = extendTheme({
       body: {
         fontFamily: `'Nunito', sans-serif`,
         height: '100%',
-        bg: '#ffecd1',
       },
     },
   },
