@@ -31,7 +31,7 @@ const Header = () => {
         onClick={onOpen}
         position={['fixed']}
         top='5'
-        right='5'
+        left='5'
         p='2'
         borderRadius='lg'
         zIndex='1'
@@ -59,10 +59,10 @@ const Header = () => {
                 <ListItem py='5'>About</ListItem>
               </Link>
               <Link _hover={{ style: { textDecoration: 'none' } }}>
-                <ListItem py='5'>Log in</ListItem>
+                <ListItem py='5'>Sign in</ListItem>
               </Link>
               <Link _hover={{ style: { textDecoration: 'none' } }}>
-                <ListItem py='5'>Sign Up</ListItem>
+                <ListItem py='5'>Create New Account</ListItem>
               </Link>
             </UnorderedList>
           </DrawerBody>

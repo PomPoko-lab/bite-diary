@@ -8,8 +8,8 @@ function App() {
   return (
     <Box h='100%' display='flex' flexDirection='column' pb='4'>
       <Header />
-      {/* <Main /> */}
-      <Item />
+      <Main />
+      {/* <Item /> */}
       {/* FOOTER */}
     </Box>
   );
