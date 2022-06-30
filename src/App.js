@@ -15,7 +15,7 @@ function App() {
       {/* <Item /> */}
       {/* <About /> */}
       {/* <SignIn /> */}
-      <SignUp />
+      {/* <SignUp /> */}
       {/* FOOTER */}
     </Box>
   );

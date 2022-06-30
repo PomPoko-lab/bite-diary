@@ -1,6 +1,5 @@
 import {
   Container,
-  Box,
   Image,
   Text,
   FormControl,
@@ -39,7 +38,7 @@ const SignUp = () => {
               placeholder='First Name'
               id='name'
               mb='3'
-            />{' '}
+            />
           </FormLabel>
         </FormControl>
         <FormControl>
@@ -49,7 +48,7 @@ const SignUp = () => {
               placeholder='Email'
               id='email'
               type='email'
-            />{' '}
+            />
           </FormLabel>
           <FormHelperText mb='1'>We'll never share your email.</FormHelperText>
         </FormControl>
