@@ -6,13 +6,15 @@ const FoodItem = () => {
   return (
     <Box
       as='figure'
-      boxSize='200px'
-      mx='auto'
+      boxSize='220px'
       borderRadius='lg'
       overflow='hidden'
-      shadow='dark-lg'
-      border='1px solid rgba(0,0,0, 0.5)'
+      shadow='base'
+      borderWidth='1px 0 0 0'
+      borderStyle='solid'
+      borderColor='white'
       position='relative'
+      zIndex='-1'
     >
       <Image
         src={vnComTam}
@@ -27,14 +29,15 @@ const FoodItem = () => {
         position='absolute'
         top='0'
         left='0'
-        bg='linear-gradient(transparent, rgba(0,0,0, 0.90))'
+        bg='linear-gradient(transparent, rgba(0,0,0, 0.9) 90%)'
       />
       <Text
         as='figcaption'
         position='absolute'
         bottom='2'
         left='3'
-        color='gray.100'
+        color='gray.200'
+        letterSpacing='wide'
       >
         Com Tam Thit Nuong
       </Text>

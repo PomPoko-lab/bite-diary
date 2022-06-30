@@ -4,7 +4,6 @@ import {
   UnorderedList,
   ListItem,
   Link,
-  Button,
   Icon,
   useDisclosure,
   Drawer,
@@ -23,17 +22,22 @@ const Header = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   return (
-    <Container as='header' px={['0']} maxW='container.2xl' position={['fixed']}>
-      <Button
-        variant='ghost'
+    <Container as='header' px={['0']} maxW='container.2xl'>
+      <Box
+        bg='teal.700'
         display='flex'
-        ms='auto'
-        size='lg'
-        height='20'
+        justifyContent='center'
+        alignItems='center'
         onClick={onOpen}
+        position={['fixed']}
+        top='5'
+        right='5'
+        p='2'
+        borderRadius='lg'
+        zIndex='1'
       >
-        <Icon as={AiOutlineMenu} boxSize='12' color='teal.600' />
-      </Button>
+        <Icon as={AiOutlineMenu} boxSize='8' color='gray.100' />
+      </Box>
       <Box as='nav'></Box>
       <Drawer isOpen={isOpen} placement='top' onClose={onClose} color>
         <DrawerOverlay />
