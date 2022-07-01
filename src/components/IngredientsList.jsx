@@ -1,16 +1,16 @@
 import {
-  Heading,
-  Text,
   UnorderedList,
-  ListItem,
   Box,
   FormControl,
   FormLabel,
   Input,
   Icon,
 } from '@chakra-ui/react';
+import { useRef } from 'react';
 
 import { AiOutlineCheck } from 'react-icons/ai';
+
+import IngredientItem from './IngredientItem';
 
 const cardStyles = {
   bg: 'green.200',
@@ -22,13 +22,24 @@ const cardStyles = {
   borderRadius: 'sm',
 };
 
-const IngredientsList = () => {
+const IngredientsList = ({ ingredients, setIngredients }) => {
+  const inputRef = useRef(null);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const currentInput = inputRef.current.value;
+    if (!currentInput) return;
+    setIngredients((prev) => [...prev, currentInput.trim()]);
+    inputRef.current.value = '';
+    inputRef.current.focus();
+  };
+
   return (
     <Box>
       <Box
         {...cardStyles}
         mb='4'
-        maxH={['15vh']}
+        h={['15vh']}
         overflowY='auto'
         __css={{
           '&::-webkit-scrollbar': {
@@ -45,24 +56,15 @@ const IngredientsList = () => {
       >
         <UnorderedList
           w='full'
-          h='full'
           display='flex'
           flexWrap='wrap'
           m='0'
           listStyleType='none'
         >
-          <Box
-            {...cardStyles}
-            p='1'
-            px='2'
-            m='1'
-            borderWidth='1px'
-            bg='gray.100'
-          >
-            <ListItem>
-              <Text>Ingredien</Text>
-            </ListItem>
-          </Box>
+          {ingredients.map((item, i) => (
+            <IngredientItem key={`item-${i}`} item={item} />
+          ))}
+          {/* <IngredientItem /> */}
         </UnorderedList>
       </Box>
       <FormControl
@@ -72,9 +74,10 @@ const IngredientsList = () => {
         gap='2'
       >
         <FormLabel htmlFor='title' m='0'>
-          <Input id='title' placeholder='Add Ingredient' />
+          <Input id='title' placeholder='Add Ingredient' ref={inputRef} />
         </FormLabel>
         <Box
+          as='button'
           display='grid'
           placeItems='center'
           boxSize='35px'
@@ -84,6 +87,7 @@ const IngredientsList = () => {
           p='1'
           m='1'
           _hover={{ filter: 'brightness(1.05)', cursor: 'pointer' }}
+          onClick={handleClick}
         >
           <Icon as={AiOutlineCheck} boxSize='full' />
         </Box>

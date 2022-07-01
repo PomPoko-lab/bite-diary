@@ -9,10 +9,6 @@ const ButtonStyle = (props) => {
       py='3'
       color='gray.50'
       _hover={{ cursor: 'pointer', filter: 'brightness(105%)' }}
-      onClick={(e) => {
-        e.preventDefault();
-        props.onClick && props.onClick();
-      }}
       w='full'
       textAlign={'center'}
       {...props.styles}

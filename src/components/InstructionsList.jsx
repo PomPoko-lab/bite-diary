@@ -1,7 +1,4 @@
 import {
-  Heading,
-  Text,
-  ListItem,
   OrderedList,
   Box,
   FormControl,
@@ -9,8 +6,11 @@ import {
   Input,
   Icon,
 } from '@chakra-ui/react';
+import { useRef } from 'react';
 
 import { AiOutlineCheck } from 'react-icons/ai';
+
+import InstructionItem from './InstructionItem';
 
 const cardStyles = {
   bg: 'green.200',
@@ -22,12 +22,21 @@ const cardStyles = {
   borderRadius: 'sm',
 };
 
-const InstructionsList = () => {
+const InstructionsList = ({ instructions, setInstructions }) => {
+  const inputRef = useRef(null);
+  const handleClick = (e) => {
+    e.preventDefault();
+    const currentInput = inputRef.current.value;
+    if (!currentInput) return;
+    setInstructions((prev) => [...prev, currentInput.trim()]);
+    inputRef.current.value = '';
+    inputRef.current.focus();
+  };
   return (
     <Box>
       <Box
         {...cardStyles}
-        maxH={['15vh']}
+        h={['15vh']}
         mb='4'
         overflowY='auto'
         __css={{
@@ -43,20 +52,10 @@ const InstructionsList = () => {
           },
         }}
       >
-        <OrderedList w='full' h='full' display='flex' flexWrap='wrap' m='0'>
-          <Box
-            {...cardStyles}
-            p='1'
-            px='2'
-            m='1'
-            borderWidth='1px'
-            bg='gray.100'
-            w='full'
-          >
-            <ListItem ms='5'>
-              <Text>Ingredien</Text>
-            </ListItem>
-          </Box>
+        <OrderedList w='full' display='flex' flexWrap='wrap' m='0'>
+          {instructions.map((step, i) => (
+            <InstructionItem key={`step-${i}`} step={step} />
+          ))}
         </OrderedList>
       </Box>
       <FormControl
@@ -66,7 +65,7 @@ const InstructionsList = () => {
         gap='2'
       >
         <FormLabel htmlFor='title' m='0'>
-          <Input id='title' placeholder='Add Instruction' />
+          <Input id='title' placeholder='Add Instruction' ref={inputRef} />
         </FormLabel>
         <Box
           display='grid'
@@ -78,6 +77,7 @@ const InstructionsList = () => {
           p='1'
           m='1'
           _hover={{ filter: 'brightness(1.05)', cursor: 'pointer' }}
+          onClick={handleClick}
         >
           <Icon as={AiOutlineCheck} boxSize='full' />
         </Box>
