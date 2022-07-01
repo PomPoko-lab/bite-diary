@@ -15,10 +15,10 @@ const Main = () => {
       <Image
         src={hero}
         alt='Bite Diary Hero'
-        maxW='auto'
+        w='100vw'
         fit='cover'
         filter='brightness(0.6)'
-        maxH={['400px']}
+        maxH={['40vh', null, '50vh']}
       />
       <Box bg='gray.300' mb='6'>
         <Heading
