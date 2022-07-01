@@ -2,7 +2,7 @@ import { Box, Image, Text } from '@chakra-ui/react/';
 
 import vnComTam from '../assets/vn-comtam.jpg';
 
-const FoodItem = () => {
+const FoodItem = ({ item }) => {
   return (
     <Box
       as='figure'
@@ -39,7 +39,7 @@ const FoodItem = () => {
         color='gray.200'
         letterSpacing='wide'
       >
-        Com Tam Thit Nuong
+        {item.title}
       </Text>
     </Box>
   );

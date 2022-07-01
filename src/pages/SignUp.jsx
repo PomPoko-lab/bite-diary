@@ -1,6 +1,5 @@
 import {
   Container,
-  Image,
   Text,
   FormControl,
   FormLabel,
@@ -8,10 +7,9 @@ import {
   Input,
   Link,
 } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import ButtonStyle from '../components/ButtonStyle';
-
-import brandLogo from '../assets/logo.jpg';
 
 const SignUp = () => {
   return (
@@ -19,18 +17,9 @@ const SignUp = () => {
       display='flex'
       flexDirection='column'
       alignItems='center'
-      h='98vh'
+      h='90vh'
     >
-      <Image
-        src={brandLogo}
-        alt='bite diary small logo'
-        maxW='70%'
-        borderRadius='xl'
-        mt='25%'
-        mb='6'
-      />
-
-      <form style={{ width: '100%', marginBottom: '1em' }}>
+      <form style={{ width: '100%', marginBottom: '1em', marginTop: '3em' }}>
         <FormControl>
           <FormLabel htmlFor='name'>
             <Input
@@ -92,7 +81,9 @@ const SignUp = () => {
           mt: 'auto',
         }}
       >
-        <Link _hover={{ textDecoration: 'none' }}>Back</Link>
+        <Link as={RouterLink} to='/login' _hover={{ textDecoration: 'none' }}>
+          Back
+        </Link>
       </ButtonStyle>
     </Container>
   );

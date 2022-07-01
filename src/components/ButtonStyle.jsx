@@ -7,7 +7,6 @@ const ButtonStyle = (props) => {
       bg='green.500'
       borderRadius='md'
       py='3'
-      mx='2'
       color='gray.50'
       _hover={{ cursor: 'pointer', filter: 'brightness(105%)' }}
       onClick={(e) => {

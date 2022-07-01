@@ -13,14 +13,13 @@ import {
   DrawerOverlay,
   DrawerCloseButton,
 } from '@chakra-ui/react/';
-
-import ButtonStyle from './ButtonStyle';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { AiOutlineMenu } from 'react-icons/ai';
 import logoIcon from '../assets/smallIcon.jpg';
 import brandName from '../assets/brandName.jpg';
 
-// Needs profile, favorites, and heading(h1)
+// Needs dashboard, and heading(h1)
 
 const Header = () => {
   const { isOpen, onClose, onOpen } = useDisclosure();
@@ -73,22 +72,30 @@ const Header = () => {
               fontWeight='bold'
               letterSpacing='wide'
             >
-              <Link _hover={{ textDecoration: 'none' }}>
+              <Link
+                as={RouterLink}
+                to='/'
+                onClick={onClose}
+                _hover={{ textDecoration: 'none' }}
+              >
                 <ListItem py='5'>Home</ListItem>
               </Link>
-              <Link _hover={{ textDecoration: 'none' }}>
+              <Link
+                as={RouterLink}
+                to='about'
+                onClick={onClose}
+                _hover={{ textDecoration: 'none' }}
+              >
                 <ListItem py='5'>About</ListItem>
               </Link>
-              <Link _hover={{ textDecoration: 'none' }}>
+              <Link
+                as={RouterLink}
+                to='login'
+                onClick={onClose}
+                _hover={{ textDecoration: 'none' }}
+              >
                 <ListItem py='5'>Sign in</ListItem>
               </Link>
-              <ListItem py='2'>
-                <ButtonStyle>
-                  <Link _hover={{ textDecoration: 'none' }}>
-                    Create New Account
-                  </Link>
-                </ButtonStyle>
-              </ListItem>
             </UnorderedList>
           </DrawerBody>
         </DrawerContent>

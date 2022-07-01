@@ -1,7 +1,5 @@
 import {
   Container,
-  Box,
-  Image,
   Text,
   FormControl,
   FormLabel,
@@ -9,10 +7,9 @@ import {
   Input,
   Link,
 } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import ButtonStyle from '../components/ButtonStyle';
-
-import brandLogo from '../assets/logo.jpg';
 
 const SignIn = () => {
   return (
@@ -20,17 +17,10 @@ const SignIn = () => {
       display='flex'
       flexDirection='column'
       alignItems='center'
-      h='98vh'
+      h='90vh'
     >
-      <Image
-        src={brandLogo}
-        alt='bite diary small logo'
-        maxW='70%'
-        borderRadius='xl'
-        mt='25%'
-      />
       <Text textAlign='center' mt='6' mb='8' color='gray.400' fontWeight='bold'>
-        Find, log, and post recipes, and feel less overwhelmed about cooking.
+        Find, log, post recipes, and feel less overwhelmed about cooking.
       </Text>
 
       <form style={{ width: '100%', marginBottom: '1em' }}>
@@ -70,7 +60,13 @@ const SignIn = () => {
         Forgot Password?
       </Text>
       <ButtonStyle styles={{ mt: 'auto' }}>
-        <Link _hover={{ textDecoration: 'none' }}>Create New Account</Link>
+        <Link
+          as={RouterLink}
+          to='/register'
+          _hover={{ textDecoration: 'none' }}
+        >
+          Create New Account
+        </Link>
       </ButtonStyle>
     </Container>
   );

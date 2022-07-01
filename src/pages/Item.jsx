@@ -8,6 +8,10 @@ import {
   ListItem,
   Text,
 } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+import foods from '../foods';
 
 import img from '../assets/vn-comtam.jpg';
 
@@ -28,14 +32,29 @@ const headingStyles = {
   color: 'gray.800',
 };
 
-const Item = () => {
+const Item = ({ item }) => {
+  const { id } = useParams();
+
+  useEffect(
+    () =>
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      }),
+    []
+  );
   return (
     <Container as='main' px={['0']}>
       <Box bg='gray.300'>
         <Heading {...headingStyles} pb='0' mb='0'>
-          Title
+          {foods[id - 1].title}
         </Heading>
-        <Text px='2'>Posted by: Name</Text>
+        <Text px='2' pb='1'>
+          Posted by:{' '}
+          <Text as='span' color='green.600' fontWeight='bold'>
+            {foods[id - 1].poster}
+          </Text>
+        </Text>
       </Box>
       <Image
         src={img}
@@ -58,10 +77,9 @@ const Item = () => {
             spacing='2'
             fontWeight='bold'
           >
-            <ListItem>Meat</ListItem>
-            <ListItem>Meat</ListItem>
-            <ListItem>Meat</ListItem>
-            <ListItem>Meat</ListItem>
+            {foods[id - 1].ingredients.map((ingItem, i) => (
+              <ListItem key={`ingId-${i}`}>{ingItem}</ListItem>
+            ))}
           </UnorderedList>
         </Box>
         <Heading as='h3' {...headingStyles}>
@@ -69,13 +87,9 @@ const Item = () => {
         </Heading>
         <Box as='section' {...cardStyles}>
           <OrderedList color='gray.700' spacing='2'>
-            <ListItem>Cook the food</ListItem>
-            <ListItem>Cook the food</ListItem>
-            <ListItem>Cook the food</ListItem>
-            <ListItem>Cook the food</ListItem>
-            <ListItem>Cook the food</ListItem>
-            <ListItem>Cook the food</ListItem>
-            <ListItem>Cook the food</ListItem>
+            {foods[id - 1].instructions.map((ingItem, i) => (
+              <ListItem key={`insId-${i}`}>{ingItem}</ListItem>
+            ))}
           </OrderedList>
         </Box>
       </Box>

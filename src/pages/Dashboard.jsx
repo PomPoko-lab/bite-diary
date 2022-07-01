@@ -1,25 +1,15 @@
 import { Fragment } from 'react';
 
-import { Container, Box, Image, Heading, Link } from '@chakra-ui/react';
+import { Container, Box, Heading, Link } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 
 import FoodItem from '../components/FoodItem';
-import PostRecipe from '../components/PostRecipe';
 
-import hero from '../assets/hero.jpg';
 import foods from '../foods';
 
-const Main = () => {
+const Dashboard = () => {
   return (
     <Box>
-      <Image
-        src={hero}
-        alt='Bite Diary Hero'
-        maxW='auto'
-        fit='cover'
-        filter='brightness(0.6)'
-        maxH={['400px']}
-      />
       <Box bg='gray.300' mb='6'>
         <Heading
           textAlign='center'
@@ -31,7 +21,7 @@ const Main = () => {
           fontFamily='Nunito'
           letterSpacing='wide'
         >
-          Our Collection
+          Welcome!
         </Heading>
       </Box>
       <Container
@@ -42,18 +32,9 @@ const Main = () => {
         justifyContent='center'
         flexDirection={['column', null, 'row']}
         flexWrap={['nowrap', null, 'wrap']}
-      >
-        <PostRecipe />
-        {foods.map((item) => (
-          <Fragment key={`id${item.id}`}>
-            <Link as={RouterLink} to={`recipes/${item.id}`}>
-              <FoodItem item={item} />
-            </Link>
-          </Fragment>
-        ))}
-      </Container>
+      ></Container>
     </Box>
   );
 };
 
-export default Main;
+export default Dashboard;

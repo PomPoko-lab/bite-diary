@@ -1,4 +1,4 @@
-import { Container, Box, Text, Heading } from '@chakra-ui/react';
+import { Container, Text, Heading } from '@chakra-ui/react';
 
 const About = () => {
   return (
