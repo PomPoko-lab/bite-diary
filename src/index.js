@@ -13,6 +13,16 @@ const theme = extendTheme({
         fontFamily: `'Nunito', sans-serif`,
         height: '100%',
       },
+      '&::-webkit-scrollbar': {
+        width: '2',
+      },
+      '&::-webkit-scrollbar-track': {
+        width: '3',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        borderRadius: 'lg',
+        bg: 'gray.400',
+      },
     },
   },
 });

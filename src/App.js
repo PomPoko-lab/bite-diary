@@ -11,7 +11,24 @@ import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <Box h='100%' display='flex' flexDirection='column' pb='4'>
+    <Box
+      h='100%'
+      display='flex'
+      flexDirection='column'
+      pb='4'
+      sx={{
+        '&::-webkit-scrollbar': {
+          width: '4px',
+        },
+        '&::-webkit-scrollbar-track': {
+          width: '6px',
+        },
+        '&::-webkit-scrollbar-thumb': {
+          borderRadius: 'lg',
+          bg: 'gray.100',
+        },
+      }}
+    >
       <Header />
       <Routes>
         <Route path='/' element={<Main />} />
