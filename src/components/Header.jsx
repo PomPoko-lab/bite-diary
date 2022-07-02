@@ -56,7 +56,7 @@ const Header = () => {
       <Box
         as='nav'
         bg='gray.50'
-        p='2'
+        p='1'
         display='flex'
         alignItems='center'
         gap='4'
@@ -67,8 +67,10 @@ const Header = () => {
           display='grid'
           placeItems='center'
           borderRadius='lg'
+          bg='green.400'
+          p='2'
         >
-          <Icon as={AiOutlineMenu} boxSize='8' color='gray.600' />
+          <Icon as={AiOutlineMenu} boxSize='6' color='gray.100' />
         </Box>
         <Image
           boxSize='8'
@@ -105,7 +107,9 @@ const Header = () => {
                 onClick={onClose}
                 _hover={{ textDecoration: 'none' }}
               >
-                <ListItem py='5'>Home</ListItem>
+                <ListItem py='5' _hover={{ bg: 'gray.200' }}>
+                  Home
+                </ListItem>
               </Link>
               <Link
                 as={RouterLink}
@@ -113,7 +117,9 @@ const Header = () => {
                 onClick={onClose}
                 _hover={{ textDecoration: 'none' }}
               >
-                <ListItem py='5'>About</ListItem>
+                <ListItem py='5' _hover={{ bg: 'gray.200' }}>
+                  About
+                </ListItem>
               </Link>
               <ListItem py='3' px='2'>
                 <ButtonStyle onClick={handleLogOutClick}>
