@@ -36,6 +36,7 @@ function App() {
         <Route path='about' element={<About />} />
         <Route path='login' element={<SignIn />} />
         <Route path='register' element={<SignUp />} />
+        <Route path='404' element={<NotFound />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       {/* FOOTER */}

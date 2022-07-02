@@ -7,11 +7,11 @@ import {
   OrderedList,
   ListItem,
   Text,
+  Spinner,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import foods from '../foods';
 import img from '../assets/vn-comtam.jpg';
 
 // Firebase imports
@@ -37,13 +37,24 @@ const headingStyles = {
 
 const Item = () => {
   const { id } = useParams();
-  const [data, setData] = useState();
+  const navigate = useNavigate();
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const ref = doc(db, 'recipes', id);
-    console.log(typeof id);
-  }, []);
+    getDoc(ref)
+      .then((document) => {
+        if (document.exists()) {
+          setData(document.data());
+        } else {
+          navigate('404');
+        }
+      })
+      .catch((error) => console.error(error.messagE))
+      .finally(() => setIsLoading(false));
+  }, [id, navigate]);
 
   useEffect(
     () =>
@@ -54,58 +65,72 @@ const Item = () => {
     []
   );
 
-  return (
-    <Container as='main' px={['0']}>
-      <Box bg='gray.300'>
-        <Heading {...headingStyles} pb='0' mb='0'>
-          TITLE
-        </Heading>
-        <Text px='2' pb='1'>
-          Posted by:
-          <Text as='span' color='green.600' fontWeight='bold'>
-            POSTER
-          </Text>
-        </Text>
-      </Box>
-      <Image
-        src={img}
-        alt='Bite Diary Hero'
-        maxW='auto'
-        fit='cover'
-        filter='brightness(0.6)'
-        maxH={['400px']}
+  if (isLoading)
+    return (
+      <Spinner
+        speed='1s'
+        m='auto'
+        display='block'
+        size='xl'
+        color='green.400'
+        emptyColor='gray.100'
+        mt='10em'
       />
-      <Box as='article'>
-        <Heading as='h3' {...headingStyles}>
-          Ingredients
-        </Heading>
-        <Box as='section' {...cardStyles}>
-          <UnorderedList
-            listStyleType='none'
-            m='0'
-            textAlign='center'
-            color='gray.700'
-            spacing='2'
-            fontWeight='bold'
-          >
-            {/* {foods[id - 1].ingredients.map((ingItem, i) => (
-              <ListItem key={`ingId-${i}`}>{ingItem}</ListItem>
-            ))} */}
-          </UnorderedList>
+    );
+
+  if (!isLoading && data)
+    return (
+      <Container as='main' px={['0']}>
+        <Box bg='gray.300'>
+          <Heading {...headingStyles} pb='0' mb='0'>
+            {data.title}
+          </Heading>
+          <Text px='2' pb='1'>
+            Posted by:
+            <Text as='span' color='green.600' fontWeight='bold' ms='2'>
+              {data.poster || 'Anonymous'}
+            </Text>
+          </Text>
         </Box>
-        <Heading as='h3' {...headingStyles}>
-          Instructions
-        </Heading>
-        <Box as='section' {...cardStyles}>
-          <OrderedList color='gray.700' spacing='2'>
-            {/* {foods[id - 1].instructions.map((ingItem, i) => (
-              <ListItem key={`insId-${i}`}>{ingItem}</ListItem>
-            ))} */}
-          </OrderedList>
+        <Image
+          src={img}
+          alt='Bite Diary Hero'
+          maxW='auto'
+          fit='cover'
+          filter='brightness(0.6)'
+          maxH={['400px']}
+        />
+        <Box as='article'>
+          <Heading as='h3' {...headingStyles}>
+            Ingredients
+          </Heading>
+          <Box as='section' {...cardStyles}>
+            <UnorderedList
+              listStyleType='none'
+              m='0'
+              textAlign='center'
+              color='gray.700'
+              spacing='2'
+              fontWeight='bold'
+            >
+              {data.ingredients.map((ingItem, i) => (
+                <ListItem key={`ingId-${i}`}>{ingItem}</ListItem>
+              ))}
+            </UnorderedList>
+          </Box>
+          <Heading as='h3' {...headingStyles}>
+            Instructions
+          </Heading>
+          <Box as='section' {...cardStyles}>
+            <OrderedList color='gray.700' spacing='2'>
+              {data.instructions.map((ingItem, i) => (
+                <ListItem key={`insId-${i}`}>{ingItem}</ListItem>
+              ))}
+            </OrderedList>
+          </Box>
         </Box>
-      </Box>
-    </Container>
-  );
+      </Container>
+    );
 };
 
 export default Item;
