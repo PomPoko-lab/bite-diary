@@ -8,12 +8,15 @@ import {
   ListItem,
   Text,
 } from '@chakra-ui/react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import foods from '../foods';
-
 import img from '../assets/vn-comtam.jpg';
+
+// Firebase imports
+import { db } from '../firebase/config';
+import { doc, getDoc } from 'firebase/firestore';
 
 const cardStyles = {
   bg: 'green.200',
@@ -32,8 +35,15 @@ const headingStyles = {
   color: 'gray.800',
 };
 
-const Item = ({ item }) => {
+const Item = () => {
   const { id } = useParams();
+  const [data, setData] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const ref = doc(db, 'recipes', id);
+    console.log(typeof id);
+  }, []);
 
   useEffect(
     () =>
@@ -43,16 +53,17 @@ const Item = ({ item }) => {
       }),
     []
   );
+
   return (
     <Container as='main' px={['0']}>
       <Box bg='gray.300'>
         <Heading {...headingStyles} pb='0' mb='0'>
-          {foods[id - 1].title}
+          TITLE
         </Heading>
         <Text px='2' pb='1'>
-          Posted by:{' '}
+          Posted by:
           <Text as='span' color='green.600' fontWeight='bold'>
-            {foods[id - 1].poster}
+            POSTER
           </Text>
         </Text>
       </Box>
@@ -77,9 +88,9 @@ const Item = ({ item }) => {
             spacing='2'
             fontWeight='bold'
           >
-            {foods[id - 1].ingredients.map((ingItem, i) => (
+            {/* {foods[id - 1].ingredients.map((ingItem, i) => (
               <ListItem key={`ingId-${i}`}>{ingItem}</ListItem>
-            ))}
+            ))} */}
           </UnorderedList>
         </Box>
         <Heading as='h3' {...headingStyles}>
@@ -87,9 +98,9 @@ const Item = ({ item }) => {
         </Heading>
         <Box as='section' {...cardStyles}>
           <OrderedList color='gray.700' spacing='2'>
-            {foods[id - 1].instructions.map((ingItem, i) => (
+            {/* {foods[id - 1].instructions.map((ingItem, i) => (
               <ListItem key={`insId-${i}`}>{ingItem}</ListItem>
-            ))}
+            ))} */}
           </OrderedList>
         </Box>
       </Box>

@@ -17,51 +17,108 @@ import {
   AccordionIcon,
   AccordionPanel,
   Heading,
+  Text,
+  Spinner,
 } from '@chakra-ui/react';
+import { useState } from 'react';
 
-import { useState, useRef, useEffect } from 'react';
+// Firebase imports
+import { db, storage } from '../firebase/config';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { collection, addDoc } from 'firebase/firestore';
 
+// Styling Imports
 import { AiFillPlusCircle } from 'react-icons/ai';
-
 import ButtonStyle from './ButtonStyle';
+
+// Component Imports
 import IngredientsList from './IngredientsList';
 import InstructionsList from './InstructionsList';
 
 const PostRecipe = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const titleRef = useRef('');
-  const imgRef = useRef('');
-
+  const [recTitle, setRecTitle] = useState('');
+  const [recImg, setRecImg] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [instructions, setInstructions] = useState([]);
 
-  const [formState, setFormState] = useState(null);
+  const [imgError, setImgError] = useState(null);
 
-  const resetInputs = () => {
-    setIngredients([]);
-    setInstructions([]);
-    titleRef.current.value = '';
-    imgRef.current.value = '';
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState('');
+
+  const handleImgChange = (e) => {
+    setImgError(null);
+    const file = e.target.files[0];
+    if (!file) {
+      return;
+    }
+    if (!file.type.includes('image')) {
+      setImgError('Please select an image.');
+      return;
+    }
+    if (file.size > 1000000) {
+      setImgError('File size cannot exceed 1mb.');
+      return;
+    }
+    setRecImg(file);
   };
 
-  const handleSubmit = (e) => {
+  const isValidFields = () => {
+    if (recTitle.length < 4) {
+      setIsError('Recipe name must be at least 4 characters.');
+      return false;
+    }
+    if (!recImg) {
+      setIsError('Please select an image.');
+      return false;
+    }
+    if (ingredients.length) {
+      setIsError('Please add at least 1 ingredient.');
+      return false;
+    }
+    if (instructions.length) {
+      setIsError('Please add at least 1 step (instruction).');
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormState({
-      title: titleRef.current.value,
-      img: imgRef.current.value,
-      ingredients,
-      instructions,
-    });
-    onClose();
-  };
+    if (!isValidFields()) return;
+    setIsLoading(true);
+    try {
+      // upload Img and stores img src into imgSrc
+      const dbPath = ref(storage, `recImages/${recImg.name}`);
+      const uploadRes = await uploadBytes(dbPath, recImg);
+      const imgSrc = await getDownloadURL(uploadRes.ref);
 
-  useEffect(() => {
-    if (!formState) return;
-    console.log('submitted form');
-    console.log(formState);
-    resetInputs();
-  }, [formState]);
+      // Add new document to db
+      const submission = {
+        title: recTitle,
+        img: imgSrc,
+        ingredients,
+        instructions,
+      };
+      const dbRef = collection(db, 'recipes');
+      const addRes = await addDoc(dbRef, submission);
+
+      console.log(addRes.id); // Navigate user to page
+      // Closes drawer and resets inputs
+      setIsError(null);
+      onClose();
+      setIngredients([]);
+      setInstructions([]);
+      setRecTitle('');
+      setRecImg('');
+    } catch (error) {
+      setIsError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -100,7 +157,10 @@ const PostRecipe = () => {
                     <Input
                       id='title'
                       placeholder='Recipe Name'
-                      ref={titleRef}
+                      value={recTitle}
+                      onChange={(e) => {
+                        setRecTitle(e.target.value);
+                      }}
                     />
                   </FormLabel>
                 </FormControl>
@@ -112,8 +172,19 @@ const PostRecipe = () => {
                       id='img'
                       placeholder='Image'
                       type='file'
-                      ref={imgRef}
+                      onChange={handleImgChange}
                     />
+                    {imgError && (
+                      <Text
+                        color='gray.100'
+                        bg='red.300'
+                        p='2'
+                        my='2'
+                        borderRadius='md'
+                      >
+                        {imgError}
+                      </Text>
+                    )}
                   </FormLabel>
                 </FormControl>
                 {/* Start of lists*/}
@@ -160,7 +231,20 @@ const PostRecipe = () => {
                   </AccordionItem>
                 </Accordion>
                 {/* End of lists */}
-                <ButtonStyle styles={{ mt: 'auto' }}>Submit</ButtonStyle>
+                {isError && (
+                  <Text
+                    color='gray.100'
+                    bg='red.300'
+                    p='2'
+                    my='2'
+                    borderRadius='md'
+                  >
+                    {isError}
+                  </Text>
+                )}
+                <ButtonStyle styles={{ mt: 'auto' }}>
+                  {!isLoading ? 'Submit' : <Spinner speed='1s' />}
+                </ButtonStyle>
               </Box>
             </form>
           </DrawerBody>

@@ -1,7 +1,5 @@
 import { Box, Image, Text } from '@chakra-ui/react/';
 
-import vnComTam from '../assets/vn-comtam.jpg';
-
 const FoodItem = ({ item }) => {
   return (
     <Box
@@ -17,7 +15,7 @@ const FoodItem = ({ item }) => {
       zIndex='-1'
     >
       <Image
-        src={vnComTam}
+        src={item.img}
         alt='image of the food recipe'
         fit='cover'
         w='100%'
