@@ -6,12 +6,49 @@ import {
   FormHelperText,
   Input,
   Link,
+  Spinner,
 } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { UserContext } from '../store/UserContext';
 
 import ButtonStyle from '../components/ButtonStyle';
 
+// Firebase imports
+import { auth } from '../firebase/config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+
 const SignIn = () => {
+  const [error, setError] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const { dispatch } = useContext(UserContext);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const userCredentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredentials.user;
+      dispatch({ type: 'LOGIN', payload: user });
+      setEmail('');
+      navigate('/');
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setPassword('');
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Container
       display='flex'
@@ -23,7 +60,10 @@ const SignIn = () => {
         Find, log, post recipes, and feel less overwhelmed about cooking.
       </Text>
 
-      <form style={{ width: '100%', marginBottom: '1em' }}>
+      <form
+        style={{ width: '100%', marginBottom: '1em' }}
+        onSubmit={handleSubmit}
+      >
         <FormControl>
           <FormLabel htmlFor='email' />
           <Input
@@ -31,6 +71,8 @@ const SignIn = () => {
             placeholder='Email'
             id='email'
             type='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <FormHelperText mb='1'>We'll never share your email.</FormHelperText>
         </FormControl>
@@ -42,6 +84,8 @@ const SignIn = () => {
             mb='3'
             id='password'
             type='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </FormControl>
         <ButtonStyle
@@ -53,12 +97,24 @@ const SignIn = () => {
             border: '2px solid rgba(72, 135, 54,0.6)',
           }}
         >
-          <Text>Sign In</Text>
+          {!isLoading ? <Text>Sign In</Text> : <Spinner speed='1s' />}
         </ButtonStyle>
       </form>
       <Text color='orange.400' textDecoration='underline'>
         Forgot Password?
       </Text>
+      {error && (
+        <Text
+          m='2'
+          p='2'
+          color='gray.100'
+          bg='red.300'
+          fontSize='lg'
+          borderRadius='md'
+        >
+          {error}
+        </Text>
+      )}
       <ButtonStyle styles={{ mt: 'auto' }}>
         <Link
           as={RouterLink}

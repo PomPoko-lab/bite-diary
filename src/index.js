@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { UserContextProvider } from './store/UserContext.jsx';
 import '@fontsource/nunito';
 
 import App from './App';
@@ -32,7 +33,9 @@ root.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <BrowserRouter>
-        <App />
+        <UserContextProvider>
+          <App />
+        </UserContextProvider>
       </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>

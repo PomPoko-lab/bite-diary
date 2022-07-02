@@ -12,6 +12,7 @@ const ButtonStyle = (props) => {
       w='full'
       textAlign={'center'}
       {...props.styles}
+      onClick={props.onClick}
     >
       {props.children}
     </Box>

@@ -13,16 +13,42 @@ import {
   DrawerOverlay,
   DrawerCloseButton,
 } from '@chakra-ui/react/';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../store/UserContext';
 
 import { AiOutlineMenu } from 'react-icons/ai';
 import logoIcon from '../assets/smallIcon.jpg';
 import brandName from '../assets/brandName.jpg';
+import ButtonStyle from './ButtonStyle';
+
+// Firebase imports
+import { auth } from '../firebase/config';
+import { signOut } from 'firebase/auth';
 
 // Needs dashboard, and heading(h1)
 
 const Header = () => {
+  const { user, dispatch } = useContext(UserContext);
   const { isOpen, onClose, onOpen } = useDisclosure();
+
+  const navigate = useNavigate();
+
+  const handleLogOutClick = async () => {
+    if (!user) {
+      navigate('login');
+      onClose();
+      return;
+    }
+
+    try {
+      await signOut(auth);
+      dispatch({ type: 'LOGOUT' });
+      onClose();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <Container as='header' px={['0']} maxW='container.2xl'>
@@ -88,14 +114,11 @@ const Header = () => {
               >
                 <ListItem py='5'>About</ListItem>
               </Link>
-              <Link
-                as={RouterLink}
-                to='login'
-                onClick={onClose}
-                _hover={{ textDecoration: 'none' }}
-              >
-                <ListItem py='5'>Sign in</ListItem>
-              </Link>
+              <ListItem py='5' px='2'>
+                <ButtonStyle onClick={handleLogOutClick}>
+                  {user ? 'Sign Out' : 'Sign In'}
+                </ButtonStyle>
+              </ListItem>
             </UnorderedList>
           </DrawerBody>
         </DrawerContent>

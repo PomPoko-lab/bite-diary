@@ -20,7 +20,7 @@ import {
   Text,
   Spinner,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Firebase imports
@@ -36,6 +36,8 @@ import ButtonStyle from './ButtonStyle';
 import IngredientsList from './IngredientsList';
 import InstructionsList from './InstructionsList';
 
+import { UserContext } from '../store/UserContext';
+
 const PostRecipe = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -50,6 +52,8 @@ const PostRecipe = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState('');
+
+  const { user } = useContext(UserContext);
 
   const handleImgChange = (e) => {
     setImgError(null);
@@ -122,6 +126,8 @@ const PostRecipe = () => {
       setIsLoading(false);
     }
   };
+
+  if (!user) return;
 
   return (
     <>

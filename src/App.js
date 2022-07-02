@@ -9,7 +9,12 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import NotFound from './pages/NotFound';
 
+import { useContext } from 'react';
+import { UserContext } from './store/UserContext';
+
 function App() {
+  const { user } = useContext(UserContext);
+
   return (
     <Box
       h='100%'
@@ -34,8 +39,8 @@ function App() {
         <Route path='/' element={<Main />} />
         <Route path='/recipes/:id' element={<Item />} />
         <Route path='about' element={<About />} />
-        <Route path='login' element={<SignIn />} />
-        <Route path='register' element={<SignUp />} />
+        {!user && <Route path='login' element={<SignIn />} />}
+        {!user && <Route path='register' element={<SignUp />} />}
         <Route path='404' element={<NotFound />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
