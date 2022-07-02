@@ -21,6 +21,7 @@ import {
   Spinner,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Firebase imports
 import { db, storage } from '../firebase/config';
@@ -37,6 +38,8 @@ import InstructionsList from './InstructionsList';
 
 const PostRecipe = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const navigate = useNavigate();
 
   const [recTitle, setRecTitle] = useState('');
   const [recImg, setRecImg] = useState('');
@@ -74,11 +77,11 @@ const PostRecipe = () => {
       setIsError('Please select an image.');
       return false;
     }
-    if (ingredients.length) {
+    if (ingredients.length < 1) {
       setIsError('Please add at least 1 ingredient.');
       return false;
     }
-    if (instructions.length) {
+    if (instructions.length < 1) {
       setIsError('Please add at least 1 step (instruction).');
       return false;
     }
@@ -105,7 +108,6 @@ const PostRecipe = () => {
       const dbRef = collection(db, 'recipes');
       const addRes = await addDoc(dbRef, submission);
 
-      console.log(addRes.id); // Navigate user to page
       // Closes drawer and resets inputs
       setIsError(null);
       onClose();
@@ -113,6 +115,7 @@ const PostRecipe = () => {
       setInstructions([]);
       setRecTitle('');
       setRecImg('');
+      navigate(`recipes/${addRes.id}`);
     } catch (error) {
       setIsError(error.message);
     } finally {
