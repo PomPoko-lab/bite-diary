@@ -6,7 +6,6 @@ import {
   UnorderedList,
   OrderedList,
   ListItem,
-  Text,
   Spinner,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
@@ -85,12 +84,6 @@ const Item = () => {
           <Heading {...headingStyles} pb='0' mb='0'>
             {data.title}
           </Heading>
-          <Text px='2' pb='1'>
-            Posted by:
-            <Text as='span' color='green.600' fontWeight='bold' ms='2'>
-              {data.poster || 'Anonymous'}
-            </Text>
-          </Text>
         </Box>
         <Image
           src={img}

@@ -26,8 +26,9 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const ref = collection(db, 'recipes');
+    if (foods.length > 0) return;
     setIsLoading(true);
+    const ref = collection(db, 'recipes');
     getDocs(ref)
       .then((snapshot) => {
         snapshot.docs.forEach((document) => {
@@ -39,7 +40,7 @@ const Main = () => {
       })
       .catch((error) => console.error(error.message))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [foods.length]);
 
   return (
     <Box>

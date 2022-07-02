@@ -44,9 +44,10 @@ const Header = () => {
     try {
       await signOut(auth);
       dispatch({ type: 'LOGOUT' });
-      onClose();
     } catch (error) {
       console.error(error.message);
+    } finally {
+      onClose();
     }
   };
 
@@ -114,7 +115,7 @@ const Header = () => {
               >
                 <ListItem py='5'>About</ListItem>
               </Link>
-              <ListItem py='5' px='2'>
+              <ListItem py='3' px='2'>
                 <ButtonStyle onClick={handleLogOutClick}>
                   {user ? 'Sign Out' : 'Sign In'}
                 </ButtonStyle>
