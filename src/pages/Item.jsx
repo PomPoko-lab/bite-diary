@@ -55,7 +55,7 @@ const Item = () => {
           navigate('404');
         }
       })
-      .catch((error) => console.error(error.messagE))
+      .catch((error) => console.error(error.message))
       .finally(() => setIsLoading(false));
   }, [id, navigate]);
 

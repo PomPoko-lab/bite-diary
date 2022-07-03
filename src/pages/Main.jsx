@@ -29,7 +29,6 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (foods.length > 0) return;
     setIsLoading(true);
     const ref = collection(db, 'recipes');
     getDocs(ref)
@@ -43,7 +42,7 @@ const Main = () => {
       })
       .catch((error) => console.error(error.message))
       .finally(() => setIsLoading(false));
-  }, [foods.length]);
+  }, []);
 
   return (
     <Box>
