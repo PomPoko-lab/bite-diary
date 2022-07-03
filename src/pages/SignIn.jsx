@@ -8,7 +8,7 @@ import {
   Link,
   Button,
 } from '@chakra-ui/react';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { UserContext } from '../store/UserContext';
 
@@ -17,7 +17,7 @@ import { auth } from '../firebase/config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const SignIn = () => {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('Invalid email entered.');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -26,8 +26,21 @@ const SignIn = () => {
 
   const { dispatch } = useContext(UserContext);
 
+  const isValid = () => {
+    if (!email.includes('@') && email.includes('.com')) {
+      setError('Invalid email entered.');
+      return false;
+    }
+    if (password.length <= 6) {
+      setError('Password must contain at least 6 valid characters.');
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!isValid) return;
     setIsLoading(true);
     try {
       const userCredentials = await signInWithEmailAndPassword(
@@ -37,11 +50,9 @@ const SignIn = () => {
       );
       const user = userCredentials.user;
       dispatch({ type: 'LOGIN', payload: user });
-      setEmail('');
       navigate('/');
     } catch (error) {
       setError(error.message);
-    } finally {
       setPassword('');
       setIsLoading(false);
     }
@@ -92,21 +103,10 @@ const SignIn = () => {
       <Text color='orange.400' textDecoration='underline'>
         Forgot Password?
       </Text>
-      {error && (
-        <Text
-          m='2'
-          p='2'
-          color='gray.100'
-          bg='red.300'
-          fontSize='lg'
-          borderRadius='md'
-        >
-          {error}
-        </Text>
-      )}
       <Link as={RouterLink} to='/register' color='gray.500'>
         Create New Account
       </Link>
+      {error && <Text color='red.400'>{error}</Text>}
       <Button
         as='button'
         mt='auto'
