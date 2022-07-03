@@ -26,21 +26,20 @@ const SignIn = () => {
 
   const { dispatch } = useContext(UserContext);
 
-  const isValid = () => {
+  const validateInputs = () => {
     if (!email.includes('@') && !email.includes('.com')) {
       throw Error('Invalid email entered.');
     }
     if (password.length <= 6) {
       throw Error('Password must contain at least 6 valid characters.');
     }
-    return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      validateInputs();
       setIsLoading(true);
-      if (!isValid()) return;
       setError(null);
       const userCredentials = await signInWithEmailAndPassword(
         auth,
