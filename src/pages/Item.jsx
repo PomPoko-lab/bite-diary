@@ -8,20 +8,22 @@ import {
   ListItem,
   Spinner,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import img from '../assets/vn-comtam.jpg';
+import { UserContext } from '../store/UserContext';
+
+import DeleteItemModal from '../components/DeleteItemModal';
 
 // Firebase imports
 import { db } from '../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 
 const cardStyles = {
-  bg: 'green.200',
-  border: '2px solid rgba(72, 135, 54,0.3)',
+  bg: 'gray.100',
+  border: '1px solid rgba(0,0,0, 0.3)',
   shadow: 'base',
-  p: '4',
+  p: '6',
   mx: '3',
   mb: '4',
   borderRadius: 'sm',
@@ -31,7 +33,7 @@ const headingStyles = {
   fontFamily: 'Nunito',
   mb: '2',
   p: '2',
-  color: 'gray.800',
+  color: 'gray.700',
 };
 
 const Item = () => {
@@ -40,6 +42,9 @@ const Item = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const { user } = useContext(UserContext);
+
+  // fetches document from db
   useEffect(() => {
     setIsLoading(true);
     const ref = doc(db, 'recipes', id);
@@ -55,6 +60,7 @@ const Item = () => {
       .finally(() => setIsLoading(false));
   }, [id, navigate]);
 
+  // Scroll to top on open
   useEffect(
     () =>
       window.scrollTo({
@@ -80,19 +86,27 @@ const Item = () => {
   if (!isLoading && data)
     return (
       <Container as='main' px={['0']}>
-        <Box bg='gray.300'>
-          <Heading {...headingStyles} pb='0' mb='0'>
+        {/* Delete Button */}
+        <Box maxH={['15em']} overflow='hidden' position='relative'>
+          <Heading
+            {...headingStyles}
+            bg='green.400'
+            color='gray.50'
+            pb='1'
+            mb='0'
+          >
             {data.title}
           </Heading>
+          <Image
+            src={data.img}
+            alt='Image of recipe'
+            h='full'
+            w='full'
+            fit='fill'
+            filter='brightness(0.8)'
+          />
+          {user && <DeleteItemModal />}
         </Box>
-        <Image
-          src={img}
-          alt='Bite Diary Hero'
-          maxW='auto'
-          fit='cover'
-          filter='brightness(0.6)'
-          maxH={['400px']}
-        />
         <Box as='article'>
           <Heading as='h3' {...headingStyles}>
             Ingredients
@@ -103,11 +117,22 @@ const Item = () => {
               m='0'
               textAlign='center'
               color='gray.700'
-              spacing='2'
               fontWeight='bold'
+              display='flex'
+              flexWrap='wrap'
+              alignItems='center'
+              gap='2'
             >
               {data.ingredients.map((ingItem, i) => (
-                <ListItem key={`ingId-${i}`}>{ingItem}</ListItem>
+                <ListItem
+                  key={`ingId-${i}`}
+                  p='3'
+                  bg='gray.50'
+                  shadow='base'
+                  borderRadius='sm'
+                >
+                  {ingItem}
+                </ListItem>
               ))}
             </UnorderedList>
           </Box>
@@ -117,7 +142,15 @@ const Item = () => {
           <Box as='section' {...cardStyles}>
             <OrderedList color='gray.700' spacing='2'>
               {data.instructions.map((ingItem, i) => (
-                <ListItem key={`insId-${i}`}>{ingItem}</ListItem>
+                <ListItem
+                  key={`insId-${i}`}
+                  p='3'
+                  bg='gray.50'
+                  shadow='base'
+                  borderRadius='sm'
+                >
+                  {ingItem}
+                </ListItem>
               ))}
             </OrderedList>
           </Box>
