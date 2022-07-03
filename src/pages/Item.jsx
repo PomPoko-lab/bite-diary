@@ -104,6 +104,7 @@ const Item = () => {
             w='full'
             fit='fill'
             filter='brightness(0.8)'
+            loading='lazy'
           />
           {user && <DeleteItemModal />}
         </Box>

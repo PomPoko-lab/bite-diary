@@ -15,7 +15,8 @@ import { db } from '../firebase/config';
 import { collection, getDocs } from 'firebase/firestore';
 
 // Styling imports
-import hero from '../assets/hero.jpg';
+import heroDesktop from '../assets/heroDesktop.webp';
+import heroMobile from '../assets/heroMobile.webp';
 
 // Component imports
 import FoodItem from '../components/FoodItem';
@@ -45,12 +46,14 @@ const Main = () => {
   return (
     <Box>
       <Image
-        src={hero}
+        src={heroMobile}
         alt='Bite Diary Hero'
         w='100vw'
         fit='cover'
         filter='brightness(0.6)'
+        loading='lazy'
         maxH={['40vh', null, '50vh']}
+        srcSet={`${heroDesktop} 1920w ${heroMobile} 500w`}
       />
       <Box bg='gray.300' mb='6'>
         <Heading

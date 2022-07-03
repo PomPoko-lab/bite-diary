@@ -5,7 +5,6 @@ import { useContext, lazy, Suspense } from 'react';
 import { UserContext } from './store/UserContext';
 
 // Lazy Loading
-
 const Header = lazy(() => import('./components/Header'));
 const Main = lazy(() => import('./pages/Main'));
 const Item = lazy(() => import('./pages/Item'));

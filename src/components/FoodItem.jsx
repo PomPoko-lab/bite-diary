@@ -21,6 +21,7 @@ const FoodItem = ({ item }) => {
         w='100%'
         h='100%'
         opacity='90%'
+        loading='lazy'
       />
       <Box
         boxSize='full'

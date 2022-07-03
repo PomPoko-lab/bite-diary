@@ -18,8 +18,8 @@ import { useContext } from 'react';
 import { UserContext } from '../store/UserContext';
 
 import { AiOutlineMenu } from 'react-icons/ai';
-import logoIcon from '../assets/smallIcon.jpg';
-import brandName from '../assets/brandName.jpg';
+import logoIcon from '../assets/smallIcon.webp';
+import brandName from '../assets/brandName.webp';
 import ButtonStyle from './ButtonStyle';
 
 // Firebase imports
