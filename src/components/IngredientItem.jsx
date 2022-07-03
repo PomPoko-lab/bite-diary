@@ -2,17 +2,19 @@ import { Box, ListItem, Text } from '@chakra-ui/react';
 
 const IngredientItem = ({ item }) => {
   const cardStyles = {
-    bg: 'green.200',
-    border: '1px solid rgba(72, 135, 54,0.3)',
+    bg: 'gray.50',
+    border: '1px solid rgba(0,0,0,0.1)',
     shadow: 'base',
-    p: '2',
+    p: '1',
+    px: '2',
     mx: '1',
     mb: '2',
-    borderRadius: 'sm',
+    mt: '1',
+    borderRadius: '1px',
   };
 
   return (
-    <Box {...cardStyles} p='1' px='2' m='1' borderWidth='1px' bg='gray.100'>
+    <Box {...cardStyles}>
       <ListItem>
         <Text>{item}</Text>
       </ListItem>

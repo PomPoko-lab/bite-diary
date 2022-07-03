@@ -72,31 +72,26 @@ const PostRecipe = () => {
     setRecImg(file);
   };
 
-  const isValidFields = () => {
+  const validateInputs = () => {
     if (recTitle.length < 4) {
-      setIsError('Recipe name must be at least 4 characters.');
-      return false;
+      throw Error('Recipe name must be at least 4 characters.');
     }
     if (!recImg) {
-      setIsError('Please select an image.');
-      return false;
+      throw Error('Please select an image.');
     }
     if (ingredients.length < 1) {
-      setIsError('Please add at least 1 ingredient.');
-      return false;
+      throw Error('Please add at least 1 ingredient.');
     }
     if (instructions.length < 1) {
-      setIsError('Please add at least 1 step (instruction).');
-      return false;
+      throw Error('Please add at least 1 step (instruction).');
     }
-    return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isValidFields()) return;
-    setIsLoading(true);
     try {
+      validateInputs();
+      setIsLoading(true);
       // upload Img and stores img src into imgSrc
       const dbPath = ref(storage, `recImages/${recImg.name}`);
       const uploadRes = await uploadBytes(dbPath, recImg);
@@ -149,7 +144,13 @@ const PostRecipe = () => {
         isOpen={isOpen}
         placement='right'
         onClose={onClose}
-        onCloseComplete={() => setIsError(null)}
+        onCloseComplete={() => {
+          setIsError(null);
+          setIngredients([]);
+          setInstructions([]);
+          setRecTitle('');
+          setRecImg('');
+        }}
       >
         <DrawerOverlay />
         <DrawerContent>

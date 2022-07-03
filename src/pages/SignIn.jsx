@@ -30,7 +30,7 @@ const SignIn = () => {
     if (!email.includes('@') && !email.includes('.com')) {
       throw Error('Invalid email entered.');
     }
-    if (password.length <= 6) {
+    if (password.length < 6) {
       throw Error('Password must contain at least 6 valid characters.');
     }
   };

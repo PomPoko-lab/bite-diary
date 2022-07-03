@@ -1,26 +1,21 @@
 import { Box, ListItem, Text } from '@chakra-ui/react';
 
 const cardStyles = {
-  bg: 'green.200',
-  border: '1px solid rgba(72, 135, 54,0.2)',
+  bg: 'gray.50',
+  border: '1px solid rgba(0,0,0,0.1)',
   shadow: 'base',
-  p: '2',
+  p: '1',
+  px: '2',
   mx: '1',
   mb: '2',
-  borderRadius: 'sm',
+  mt: '1',
+  borderRadius: '1px',
+  w: 'full',
 };
 
 const InstructionItem = ({ step }) => {
   return (
-    <Box
-      {...cardStyles}
-      p='1'
-      px='2'
-      m='1'
-      borderWidth='1px'
-      bg='gray.100'
-      w='full'
-    >
+    <Box {...cardStyles}>
       <ListItem ms='5'>
         <Text>{step}</Text>
       </ListItem>
