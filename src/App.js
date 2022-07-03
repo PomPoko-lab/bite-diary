@@ -3,10 +3,10 @@ import { Routes, Route } from 'react-router-dom';
 
 import { useContext, lazy, Suspense } from 'react';
 import { UserContext } from './store/UserContext';
-import Footer from './components/Footer';
 
 // Lazy Loading
 const Header = lazy(() => import('./components/Header'));
+const Footer = lazy(() => import('./components/Footer'));
 const Main = lazy(() => import('./pages/Main'));
 const Item = lazy(() => import('./pages/Item'));
 const About = lazy(() => import('./pages/About'));
@@ -19,7 +19,7 @@ function App() {
 
   return (
     <Box
-      h='100%'
+      h='100vh'
       display='flex'
       flexDirection='column'
       sx={{

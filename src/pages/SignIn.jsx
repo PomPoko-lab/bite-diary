@@ -6,7 +6,7 @@ import {
   FormHelperText,
   Input,
   Link,
-  Spinner,
+  Button,
 } from '@chakra-ui/react';
 import { useState, useContext } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
@@ -88,7 +88,7 @@ const SignIn = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </FormControl>
-        <ButtonStyle
+        {/* <ButtonStyle
           styles={{
             color: 'green.900',
             fontWeight: 'bold',
@@ -98,7 +98,10 @@ const SignIn = () => {
           }}
         >
           {!isLoading ? <Text>Sign In</Text> : <Spinner speed='1s' />}
-        </ButtonStyle>
+        </ButtonStyle> */}
+        <Button as='a' mt='auto' w='full' colorScheme='green'>
+          Create New Account
+        </Button>
       </form>
       <Text color='orange.400' textDecoration='underline'>
         Forgot Password?

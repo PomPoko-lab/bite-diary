@@ -13,8 +13,8 @@ import { AiOutlineCheck } from 'react-icons/ai';
 import InstructionItem from './InstructionItem';
 
 const cardStyles = {
-  bg: 'green.200',
-  border: '1px solid rgba(72, 135, 54,0.2)',
+  bg: 'gray.100',
+  border: '1px solid rgba(0,0,0,0.2)',
   shadow: 'base',
   p: '2',
   mx: '1',

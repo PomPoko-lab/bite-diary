@@ -19,6 +19,7 @@ import {
   Heading,
   Text,
   Spinner,
+  Button,
 } from '@chakra-ui/react';
 import { useState, useContext, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +31,6 @@ import { collection, addDoc } from 'firebase/firestore';
 
 // Styling Imports
 import { AiFillPlusCircle } from 'react-icons/ai';
-import ButtonStyle from './ButtonStyle';
 
 import { UserContext } from '../store/UserContext';
 
@@ -132,16 +132,25 @@ const PostRecipe = () => {
   return (
     <>
       <Icon
+        zIndex='1'
         position='fixed'
         right={['1em']}
         bottom={['4em']}
         boxSize={['3em']}
         color='green.400'
+        bg='gray.50'
+        borderRadius='full'
+        shadow='base'
         _hover={{ filter: 'brightness(1.1)', cursor: 'pointer' }}
         as={AiFillPlusCircle}
         onClick={onOpen}
       />
-      <Drawer isOpen={isOpen} placement='right' onClose={onClose}>
+      <Drawer
+        isOpen={isOpen}
+        placement='right'
+        onClose={onClose}
+        onCloseComplete={() => setIsError(null)}
+      >
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
@@ -264,9 +273,16 @@ const PostRecipe = () => {
                       {isError}
                     </Text>
                   )}
-                  <ButtonStyle styles={{ mt: 'auto' }}>
-                    {!isLoading ? 'Submit' : <Spinner speed='1s' />}
-                  </ButtonStyle>
+                  <Button
+                    as='button'
+                    mt='auto'
+                    type='submit'
+                    colorScheme='green'
+                    isLoading={isLoading}
+                    loadingText='Submitting'
+                  >
+                    Submit
+                  </Button>
                 </Box>
               </form>
             </Suspense>

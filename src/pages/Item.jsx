@@ -98,7 +98,6 @@ const Item = () => {
             />
           }
         >
-          {/* Delete Button */}
           <Box maxH={['16em']} overflow='hidden' position='relative' mb='6'>
             <Heading
               {...headingStyles}
@@ -118,6 +117,7 @@ const Item = () => {
               filter='brightness(0.8)'
               loading='lazy'
             />
+            {/* Delete Button */}
             {user && <DeleteItemModal />}
           </Box>
           <Box as='article'>

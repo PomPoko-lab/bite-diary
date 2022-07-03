@@ -6,6 +6,7 @@ import {
   Link,
   Icon,
   Image,
+  Button,
   useDisclosure,
   Drawer,
   DrawerContent,
@@ -52,7 +53,7 @@ const Header = () => {
   };
 
   return (
-    <Container as='header' px={['0']} maxW='container.2xl'>
+    <Container as='header' px={['0']} maxW='container.2xl' zIndex='1'>
       <Box
         as='nav'
         bg='gray.50'
@@ -60,6 +61,7 @@ const Header = () => {
         display='flex'
         alignItems='center'
         gap='4'
+        shadow='base'
       >
         <Box
           as='button'
@@ -124,9 +126,18 @@ const Header = () => {
                 </ListItem>
               </Link>
               <ListItem py='3' px='2'>
-                <ButtonStyle onClick={handleLogOutClick}>
+                {/* <ButtonStyle onClick={handleLogOutClick}>
                   {user ? 'Sign Out' : 'Sign In'}
-                </ButtonStyle>
+                </ButtonStyle> */}
+                <Button
+                  as='button'
+                  onClick={handleLogOutClick}
+                  mt='auto'
+                  w='full'
+                  colorScheme='green'
+                >
+                  {user ? 'Sign Out' : 'Sign In'}
+                </Button>
               </ListItem>
             </UnorderedList>
           </DrawerBody>
