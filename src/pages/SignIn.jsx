@@ -8,7 +8,7 @@ import {
   Link,
   Button,
 } from '@chakra-ui/react';
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { UserContext } from '../store/UserContext';
 
@@ -17,7 +17,7 @@ import { auth } from '../firebase/config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const SignIn = () => {
-  const [error, setError] = useState('Invalid email entered.');
+  const [error, setError] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -27,22 +27,21 @@ const SignIn = () => {
   const { dispatch } = useContext(UserContext);
 
   const isValid = () => {
-    if (!email.includes('@') && email.includes('.com')) {
-      setError('Invalid email entered.');
-      return false;
+    if (!email.includes('@') && !email.includes('.com')) {
+      throw Error('Invalid email entered.');
     }
     if (password.length <= 6) {
-      setError('Password must contain at least 6 valid characters.');
-      return false;
+      throw Error('Password must contain at least 6 valid characters.');
     }
     return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!isValid) return;
-    setIsLoading(true);
     try {
+      setIsLoading(true);
+      if (!isValid()) return;
+      setError(null);
       const userCredentials = await signInWithEmailAndPassword(
         auth,
         email,
