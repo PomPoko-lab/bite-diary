@@ -52,7 +52,13 @@ const Header = () => {
   };
 
   return (
-    <Container as='header' px={['0']} maxW='container.2xl' zIndex='1'>
+    <Container
+      as='header'
+      px={['2']}
+      maxW='container.2xl'
+      zIndex='1'
+      shadow='base'
+    >
       <Box
         as='nav'
         bg='gray.50'
@@ -60,7 +66,6 @@ const Header = () => {
         display='flex'
         alignItems='center'
         gap='4'
-        shadow='base'
       >
         <Box
           as='button'
@@ -68,7 +73,7 @@ const Header = () => {
           display='grid'
           placeItems='center'
           borderRadius='lg'
-          bg='green.400'
+          bg='green.500'
           p='2'
         >
           <Icon as={AiOutlineMenu} boxSize='6' color='gray.100' />

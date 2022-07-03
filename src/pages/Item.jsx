@@ -84,7 +84,7 @@ const Item = () => {
 
   if (!isLoading && data)
     return (
-      <Container as='main' px={['0']}>
+      <Container as='main' px={['0']} maxW='container.xl'>
         <Suspense
           fallback={
             <Spinner
@@ -107,7 +107,7 @@ const Item = () => {
           >
             <Heading
               {...headingStyles}
-              bg='green.400'
+              bg='green.500'
               color='gray.50'
               p='4'
               mb='0'

@@ -12,6 +12,7 @@ const theme = extendTheme({
     global: {
       body: {
         fontFamily: `'Nunito', sans-serif`,
+        bg: 'gray.50',
         height: '100%',
       },
       '&::-webkit-scrollbar': {
