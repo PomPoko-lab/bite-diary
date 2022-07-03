@@ -1,16 +1,18 @@
-import { Box } from '@chakra-ui/react';
+import { Box, Spinner } from '@chakra-ui/react';
 import { Routes, Route } from 'react-router-dom';
 
-import Header from './components/Header';
-import Main from './pages/Main';
-import Item from './pages/Item';
-import About from './pages/About';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
-import NotFound from './pages/NotFound';
-
-import { useContext } from 'react';
+import { useContext, lazy, Suspense } from 'react';
 import { UserContext } from './store/UserContext';
+
+// Lazy Loading
+
+const Header = lazy(() => import('./components/Header'));
+const Main = lazy(() => import('./pages/Main'));
+const Item = lazy(() => import('./pages/Item'));
+const About = lazy(() => import('./pages/About'));
+const SignIn = lazy(() => import('./pages/SignIn'));
+const SignUp = lazy(() => import('./pages/SignUp'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
   const { user } = useContext(UserContext);
@@ -34,17 +36,31 @@ function App() {
         },
       }}
     >
-      <Header />
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/recipes/:id' element={<Item />} />
-        <Route path='about' element={<About />} />
-        {!user && <Route path='login' element={<SignIn />} />}
-        {!user && <Route path='register' element={<SignUp />} />}
-        <Route path='404' element={<NotFound />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-      {/* FOOTER */}
+      <Suspense
+        fallback={
+          <Spinner
+            mx='auto'
+            mt='7em'
+            speed='1s'
+            display='block'
+            size='xl'
+            color='green.400'
+            emptyColor='gray.100'
+          />
+        }
+      >
+        <Header />
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/recipes/:id' element={<Item />} />
+          <Route path='about' element={<About />} />
+          {!user && <Route path='login' element={<SignIn />} />}
+          {!user && <Route path='register' element={<SignUp />} />}
+          <Route path='404' element={<NotFound />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+        {/* FOOTER */}
+      </Suspense>
     </Box>
   );
 }
