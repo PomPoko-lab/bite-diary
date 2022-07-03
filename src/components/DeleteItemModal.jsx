@@ -31,8 +31,8 @@ const DeleteItemModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleDeleteClick = async () => {
-    setIsLoading(true);
     try {
+      setIsLoading(true);
       await deleteDoc(doc(db, 'recipes', `${id}`));
       navigate('/');
     } catch (error) {
@@ -75,6 +75,7 @@ const DeleteItemModal = () => {
                 mb='4'
                 me='4'
                 colorScheme='red'
+                onClick={handleDeleteClick}
               >
                 Delete it
               </Button>
