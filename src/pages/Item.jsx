@@ -98,7 +98,13 @@ const Item = () => {
             />
           }
         >
-          <Box maxH={['16em']} overflow='hidden' position='relative' mb='6'>
+          <Box
+            as='section'
+            maxH={['16em']}
+            overflow='hidden'
+            position='relative'
+            mb='6'
+          >
             <Heading
               {...headingStyles}
               bg='green.400'
@@ -120,11 +126,11 @@ const Item = () => {
             {/* Delete Button */}
             {user && <DeleteItemModal />}
           </Box>
-          <Box as='article'>
+          <Box as='section'>
             <Heading as='h3' {...headingStyles}>
               Ingredients
             </Heading>
-            <Box as='section' {...cardStyles} mt='0' mb='10'>
+            <Box {...cardStyles} mt='0' mb='10'>
               <UnorderedList
                 listStyleType='none'
                 m='0'
@@ -152,7 +158,7 @@ const Item = () => {
             <Heading as='h3' {...headingStyles}>
               Instructions
             </Heading>
-            <Box as='section' {...cardStyles} mt='0' mb='8'>
+            <Box {...cardStyles} mt='0' mb='8'>
               <OrderedList color='gray.700' spacing='6'>
                 {data.instructions.map((ingItem, i) => (
                   <ListItem

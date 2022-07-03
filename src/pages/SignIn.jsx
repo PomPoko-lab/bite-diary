@@ -58,6 +58,7 @@ const SignIn = () => {
 
   return (
     <Container
+      as='main'
       display='flex'
       flexDirection='column'
       gap='4'

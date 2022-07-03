@@ -45,7 +45,7 @@ const Main = () => {
   }, []);
 
   return (
-    <Box>
+    <Box as='main'>
       <Image
         srcSet={`${heroMobile} 360w, ${heroDesktop} 1900w`}
         src={heroMobile}
@@ -69,20 +69,20 @@ const Main = () => {
           />
         }
       ></Suspense>
-      <Box bg='gray.300' mb='10'>
-        <Heading
-          textAlign='center'
-          pt='6'
-          pb='4'
-          fontSize='3xl'
-          color='gray.600'
-          fontWeight='black'
-          fontFamily='Nunito'
-          letterSpacing='wide'
-        >
-          Our Collection
-        </Heading>
-      </Box>
+      <Heading
+        textAlign='center'
+        pt='6'
+        pb='4'
+        fontSize='3xl'
+        color='gray.600'
+        fontWeight='black'
+        fontFamily='Nunito'
+        letterSpacing='wide'
+        bg='gray.300'
+        mb='10'
+      >
+        Our Collection
+      </Heading>
       {isLoading && (
         <Spinner
           speed='1s'
@@ -95,6 +95,7 @@ const Main = () => {
       )}
       {!isLoading && (
         <Container
+          as='section'
           display='flex'
           gap='12'
           maxW='container.xl'

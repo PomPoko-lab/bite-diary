@@ -67,28 +67,17 @@ const DeleteItemModal = () => {
           <ModalHeader>Delete Recipe</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Container>
+            <Container as='section'>
               <Text mb='6'>Are you sure you want to delete this recipe?</Text>
-              {isLoading ? (
-                <Button
-                  isLoading
-                  loadingText='Removing..'
-                  mb='4'
-                  me='4'
-                  colorScheme='red'
-                >
-                  Delete it
-                </Button>
-              ) : (
-                <Button
-                  mb='4'
-                  me='4'
-                  colorScheme='red'
-                  onClick={handleDeleteClick}
-                >
-                  Delete it
-                </Button>
-              )}
+              <Button
+                isLoading={isLoading}
+                loadingText='Removing..'
+                mb='4'
+                me='4'
+                colorScheme='red'
+              >
+                Delete it
+              </Button>
               <Button mb='4' onClick={onClose}>
                 Cancel
               </Button>

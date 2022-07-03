@@ -12,6 +12,7 @@ import { Link as RouterLink } from 'react-router-dom';
 const SignUp = () => {
   return (
     <Container
+      as='main'
       display='flex'
       flexDirection='column'
       alignItems='center'
