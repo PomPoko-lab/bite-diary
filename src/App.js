@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import { useContext, lazy, Suspense } from 'react';
 import { UserContext } from './store/UserContext';
+import Footer from './components/Footer';
 
 // Lazy Loading
 const Header = lazy(() => import('./components/Header'));
@@ -21,7 +22,6 @@ function App() {
       h='100%'
       display='flex'
       flexDirection='column'
-      pb='4'
       sx={{
         '&::-webkit-scrollbar': {
           width: '4px',
@@ -58,7 +58,7 @@ function App() {
           <Route path='404' element={<NotFound />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
-        {/* FOOTER */}
+        <Footer />
       </Suspense>
     </Box>
   );

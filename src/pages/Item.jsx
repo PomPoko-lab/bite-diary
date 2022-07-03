@@ -21,7 +21,6 @@ const DeleteItemModal = lazy(() => import('../components/DeleteItemModal'));
 
 const cardStyles = {
   bg: 'gray.100',
-  border: '1px solid rgba(0,0,0, 0.3)',
   shadow: 'base',
   p: '6',
   mx: '3',
@@ -100,12 +99,12 @@ const Item = () => {
           }
         >
           {/* Delete Button */}
-          <Box maxH={['15em']} overflow='hidden' position='relative'>
+          <Box maxH={['16em']} overflow='hidden' position='relative' mb='6'>
             <Heading
               {...headingStyles}
               bg='green.400'
               color='gray.50'
-              pb='1'
+              p='4'
               mb='0'
             >
               {data.title}
@@ -125,7 +124,7 @@ const Item = () => {
             <Heading as='h3' {...headingStyles}>
               Ingredients
             </Heading>
-            <Box as='section' {...cardStyles}>
+            <Box as='section' {...cardStyles} mt='0' mb='10'>
               <UnorderedList
                 listStyleType='none'
                 m='0'
@@ -135,7 +134,7 @@ const Item = () => {
                 display='flex'
                 flexWrap='wrap'
                 alignItems='center'
-                gap='2'
+                gap='4'
               >
                 {data.ingredients.map((ingItem, i) => (
                   <ListItem
@@ -153,8 +152,8 @@ const Item = () => {
             <Heading as='h3' {...headingStyles}>
               Instructions
             </Heading>
-            <Box as='section' {...cardStyles}>
-              <OrderedList color='gray.700' spacing='2'>
+            <Box as='section' {...cardStyles} mt='0' mb='8'>
+              <OrderedList color='gray.700' spacing='6'>
                 {data.instructions.map((ingItem, i) => (
                   <ListItem
                     key={`insId-${i}`}

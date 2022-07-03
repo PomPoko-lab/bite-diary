@@ -70,11 +70,11 @@ const Main = () => {
           />
         }
       ></Suspense>
-      <Box bg='gray.300' mb='6'>
+      <Box bg='gray.300' mb='10'>
         <Heading
           textAlign='center'
-          pt='3'
-          pb='2'
+          pt='6'
+          pb='4'
           fontSize='3xl'
           color='gray.600'
           fontWeight='black'
@@ -97,7 +97,7 @@ const Main = () => {
       {!isLoading && (
         <Container
           display='flex'
-          gap='10'
+          gap='12'
           maxW='container.xl'
           alignItems='center'
           justifyContent='center'
