@@ -1,6 +1,6 @@
 import {
   Container,
-  Text,
+  Button,
   FormControl,
   FormLabel,
   FormHelperText,
@@ -61,28 +61,21 @@ const SignUp = () => {
             />
           </FormLabel>
         </FormControl>
-        {/* <ButtonStyle
-          styles={{
-            m: '0',
-          }}
-        >
-          <Text>Get Started</Text>
-        </ButtonStyle> */}
+        <Button as='button' mt='2em' w='full' colorScheme='green'>
+          Get Started
+        </Button>
       </form>
-      {/* <ButtonStyle
-        styles={{
-          color: 'green.900',
-          fontWeight: 'bold',
-          bg: 'white',
-          m: '0',
-          border: '2px solid rgba(72, 135, 54,0.6)',
-          mt: 'auto',
-        }}
+      <Link
+        as={RouterLink}
+        mt='auto'
+        to='/login'
+        _hover={{ textDecoration: 'none' }}
+        w='full'
       >
-        <Link as={RouterLink} to='/login' _hover={{ textDecoration: 'none' }}>
+        <Button as='button' w='full' variant='ghost'>
           Back
-        </Link>
-      </ButtonStyle> */}
+        </Button>
+      </Link>
     </Container>
   );
 };
