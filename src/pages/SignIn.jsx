@@ -99,8 +99,14 @@ const SignIn = () => {
         >
           {!isLoading ? <Text>Sign In</Text> : <Spinner speed='1s' />}
         </ButtonStyle> */}
-        <Button as='a' mt='auto' w='full' colorScheme='green'>
-          Create New Account
+        <Button
+          as='button'
+          mt='auto'
+          w='full'
+          colorScheme='green'
+          isLoading={isLoading}
+        >
+          Sign In
         </Button>
       </form>
       <Text color='orange.400' textDecoration='underline'>

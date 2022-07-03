@@ -21,7 +21,6 @@ import { UserContext } from '../store/UserContext';
 import { AiOutlineMenu } from 'react-icons/ai';
 import logoIcon from '../assets/smallIcon.webp';
 import brandName from '../assets/brandName.webp';
-import ButtonStyle from './ButtonStyle';
 
 // Firebase imports
 import { auth } from '../firebase/config';
