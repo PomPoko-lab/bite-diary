@@ -81,12 +81,14 @@ const Header = () => {
           ms='auto'
           p='1'
         />
-        <Image
-          src={brandName}
-          maxW='48'
-          alt='bite diary brand name small'
-          borderRadius='md'
-        />
+        <Link as={RouterLink} to='/'>
+          <Image
+            src={brandName}
+            maxW='48'
+            alt='bite diary brand name small'
+            borderRadius='md'
+          />
+        </Link>
       </Box>
       <Drawer isOpen={isOpen} placement='top' onClose={onClose} color>
         <DrawerOverlay />

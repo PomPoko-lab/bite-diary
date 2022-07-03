@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import {
   Container,
   Box,
@@ -20,7 +20,9 @@ import heroMobile from '../assets/heroMobile.webp';
 
 // Component imports
 import FoodItem from '../components/FoodItem';
-import PostRecipe from '../components/PostRecipe';
+
+// Lazy Loading
+const PostRecipe = lazy(() => import('../components/PostRecipe'));
 
 const Main = () => {
   const [foods, setFoods] = useState([]);
@@ -46,15 +48,28 @@ const Main = () => {
   return (
     <Box>
       <Image
+        srcSet={`${heroMobile} 360w, ${heroDesktop} 1900w`}
         src={heroMobile}
         alt='Bite Diary Hero'
-        w='100vw'
         fit='cover'
+        w='full'
         filter='brightness(0.6)'
-        loading='lazy'
+        loading='eager'
         maxH={['40vh', null, '50vh']}
-        srcSet={`${heroDesktop} 1920w ${heroMobile} 500w`}
       />
+      <Suspense
+        fallback={
+          <Spinner
+            speed='1s'
+            m='auto'
+            mt='5em'
+            display='block'
+            size='xl'
+            color='green.400'
+            emptyColor='gray.100'
+          />
+        }
+      ></Suspense>
       <Box bg='gray.300' mb='6'>
         <Heading
           textAlign='center'
