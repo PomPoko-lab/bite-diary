@@ -12,8 +12,6 @@ import { useState, useContext } from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { UserContext } from '../store/UserContext';
 
-import ButtonStyle from '../components/ButtonStyle';
-
 // Firebase imports
 import { auth } from '../firebase/config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -53,6 +51,7 @@ const SignIn = () => {
     <Container
       display='flex'
       flexDirection='column'
+      gap='4'
       alignItems='center'
       h='90vh'
     >
@@ -63,6 +62,7 @@ const SignIn = () => {
       <form
         style={{ width: '100%', marginBottom: '1em' }}
         onSubmit={handleSubmit}
+        id='sign-in'
       >
         <FormControl>
           <FormLabel htmlFor='email' />
@@ -88,26 +88,6 @@ const SignIn = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </FormControl>
-        {/* <ButtonStyle
-          styles={{
-            color: 'green.900',
-            fontWeight: 'bold',
-            bg: 'white',
-            m: '0',
-            border: '2px solid rgba(72, 135, 54,0.6)',
-          }}
-        >
-          {!isLoading ? <Text>Sign In</Text> : <Spinner speed='1s' />}
-        </ButtonStyle> */}
-        <Button
-          as='button'
-          mt='auto'
-          w='full'
-          colorScheme='green'
-          isLoading={isLoading}
-        >
-          Sign In
-        </Button>
       </form>
       <Text color='orange.400' textDecoration='underline'>
         Forgot Password?
@@ -124,15 +104,20 @@ const SignIn = () => {
           {error}
         </Text>
       )}
-      <ButtonStyle styles={{ mt: 'auto' }}>
-        <Link
-          as={RouterLink}
-          to='/register'
-          _hover={{ textDecoration: 'none' }}
-        >
-          Create New Account
-        </Link>
-      </ButtonStyle>
+      <Link as={RouterLink} to='/register' color='gray.500'>
+        Create New Account
+      </Link>
+      <Button
+        as='button'
+        mt='auto'
+        w='full'
+        type='submit'
+        form='sign-in'
+        colorScheme='green'
+        isLoading={isLoading}
+      >
+        Sign In
+      </Button>
     </Container>
   );
 };

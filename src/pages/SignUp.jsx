@@ -9,8 +9,6 @@ import {
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import ButtonStyle from '../components/ButtonStyle';
-
 const SignUp = () => {
   return (
     <Container
@@ -63,15 +61,15 @@ const SignUp = () => {
             />
           </FormLabel>
         </FormControl>
-        <ButtonStyle
+        {/* <ButtonStyle
           styles={{
             m: '0',
           }}
         >
           <Text>Get Started</Text>
-        </ButtonStyle>
+        </ButtonStyle> */}
       </form>
-      <ButtonStyle
+      {/* <ButtonStyle
         styles={{
           color: 'green.900',
           fontWeight: 'bold',
@@ -84,7 +82,7 @@ const SignUp = () => {
         <Link as={RouterLink} to='/login' _hover={{ textDecoration: 'none' }}>
           Back
         </Link>
-      </ButtonStyle>
+      </ButtonStyle> */}
     </Container>
   );
 };

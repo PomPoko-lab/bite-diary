@@ -125,9 +125,6 @@ const Header = () => {
                 </ListItem>
               </Link>
               <ListItem py='3' px='2'>
-                {/* <ButtonStyle onClick={handleLogOutClick}>
-                  {user ? 'Sign Out' : 'Sign In'}
-                </ButtonStyle> */}
                 <Button
                   as='button'
                   onClick={handleLogOutClick}
