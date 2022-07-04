@@ -15,8 +15,14 @@ const SignUp = () => {
       as='main'
       display='flex'
       flexDirection='column'
+      gap='4'
       alignItems='center'
-      h='90vh'
+      borderRadius='lg'
+      h={['90vh', null, null, '40vh']}
+      mt={['0', null, null, '10%']}
+      p={['2', null, null, '10']}
+      shadow={['none', null, null, 'base']}
+      border={['0', null, null, '1px solid rgba(0,0,0, 0.05)']}
     >
       <form style={{ width: '100%', marginBottom: '1em', marginTop: '3em' }}>
         <FormControl>

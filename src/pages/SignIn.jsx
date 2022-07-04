@@ -63,12 +63,16 @@ const SignIn = () => {
       flexDirection='column'
       gap='4'
       alignItems='center'
-      h='90vh'
+      borderRadius='lg'
+      h={['90vh', null, null, '40vh']}
+      mt={['0', null, null, '10%']}
+      p={['2', null, null, '10']}
+      shadow={['none', null, null, 'base']}
+      border={['0', null, null, '1px solid rgba(0,0,0, 0.05)']}
     >
       <Text textAlign='center' mt='6' mb='8' color='gray.400' fontWeight='bold'>
         Find, log, post recipes, and feel less overwhelmed about cooking.
       </Text>
-
       <form
         style={{ width: '100%', marginBottom: '1em' }}
         onSubmit={handleSubmit}
