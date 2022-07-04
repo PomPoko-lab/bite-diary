@@ -4,17 +4,17 @@ A recipe diary designed to record family and friend recipes, mostly family delic
 
 ## Overview
 
-## Project Status
+### Project Status
 
 Editing a recipe and the pagination for the main recipe page are currently in progress.
 
-## Links
+### Links
 
 - [Github Repo](https://github.com/PomPoko-lab/bite-diary 'Bite Diary Repo')
 
 - [Live](https://www.pompoko.io 'Live View')
 
-## Features
+### Features
 
 - Account Log in
 - View and search recipe postings
