@@ -39,7 +39,7 @@ Editing a recipe and the pagination for the main recipe page are currently in pr
 </details>
 
 <details>
-  <summary>Recipe Details Page</summary>
+  <summary>Mobile view of adding ingredients</summary>
   <img src="./github/mobileaddingredient.webp">
 </details>
 
