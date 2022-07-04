@@ -28,8 +28,27 @@ Editing a recipe and the pagination for the main recipe page are currently in pr
 
 ![Website Homepage Image](./github/Homepage.webp)
 
-## Planned Updates
+<details>
+  <summary>Mobile Homepage</summary>
+  <img src="./github/mobileHomepage.webp">
+</details>
 
+<details>
+  <summary>Recipe Details Page</summary>
+  <img src="./github/RecipeItemDetails.webp">
+</details>
+
+<details>
+  <summary>Recipe Details Page</summary>
+  <img src="./github/mobileaddingredient.webp">
+</details>
+
+## Project Roadmap
+
+- [x] Account Log in
+- [x] Browse for recipes
+- [x] Remove a recipe
+- [ ] Edit a recipe
 - [ ] Searching for a recipe
 - [ ] Main page pagination
 - [ ] Recipe submission through an API
