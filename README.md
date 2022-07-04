@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Bite Diary
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A recipe diary designed to record family and friend recipes, mostly family delicacies. Recipes may be created, updated, and deleted from the app.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+### Project Status
 
-### `npm start`
+Editing a recipe and the pagination for the main recipe page are currently in progress.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Links
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Github Repo](https://github.com/PomPoko-lab/bite-diary "Bite Diary Repo")
 
-### `npm test`
+- [Live](https://www.pompoko.io "Live View")
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- Account Log in
+- View and search recipe postings
+- Update and remove a recipe
+- Browse for recipes
+- Create a recipe using an API. -- Not yet implemented.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Screenshots
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+In progress..
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Planned Updates
 
-### `npm run eject`
+- [ ] Searching for a recipe
+- [ ] Main page pagination
+- [ ] Recipe submission through an API
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Built with
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- ReactJS
+- ChakraUI
+- React Router
+- Firebase
+- NPM
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Purpose of this project
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+I wanted a quick and simple way to preserve my family's recipes. I tend to forget the recipes and losing track of where I recorded them. Now I'll always have a spot to go back to when I need to refer to them.
 
-## Learn More
+## Experiences gained from this project
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Optimizing lighthouse performance by implementing compression utilities
+- Additional React Router concepts
+- Firebase interactions as a BaaS. 
+- Auth, Firestore, CRUD, and Storage
+- Firebase hosting
+- Firebase rules
+- Custom subdomain URL routing
+- Advanced CSS practice utilizing Chakra UI
+- Advanced CSS practice utilizing Chakra UI
+- CSS img srcset enabling responsive images and image performance optimizations
+- CSS loading image properties
+- Implementing a customized scrollbar
+- Mobile first design
+- Utilizing the React Context API (user auth)
+- Form validation with error throwing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contact 
 
-### Code Splitting
+- [Github Profile](https://github.com/PomPoko-lab "PomPoko-lab")
+- [Email](mailto:hello@pompoko.io "My Email")
+- [Portfolio/Website](https://pompoko.io/ "Portfolio")
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## License
 
-### Analyzing the Bundle Size
+Copyright &copy; 2022, CraftyBi.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Acknowledgments
 
-### Making a Progressive Web App
+- [Design inspiration](https://www.behance.net/gallery/35747197/Resipi%28New-Recipe-website%29 "Resipi inspiration")
+- [Design inspiration](https://www.behance.net/gallery/106014453/Aroma-Recipe-Web-App "Aroma inspiration")
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Support
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Please give a ⭐️ if you like this project!
