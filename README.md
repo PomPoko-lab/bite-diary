@@ -4,15 +4,15 @@ A recipe diary designed to record family and friend recipes, mostly family delic
 
 ## Overview
 
-### Project Status
+## Project Status
 
 Editing a recipe and the pagination for the main recipe page are currently in progress.
 
-### Links
+## Links
 
-- [Github Repo](https://github.com/PomPoko-lab/bite-diary "Bite Diary Repo")
+- [Github Repo](https://github.com/PomPoko-lab/bite-diary 'Bite Diary Repo')
 
-- [Live](https://www.pompoko.io "Live View")
+- [Live](https://www.pompoko.io 'Live View')
 
 ## Features
 
@@ -22,11 +22,13 @@ Editing a recipe and the pagination for the main recipe page are currently in pr
 - Browse for recipes
 - Create a recipe using an API. -- Not yet implemented.
 
-### Screenshots
+## Screenshots
 
-In progress..
+### Website Homepage
 
-### Planned Updates
+![Website Homepage Image](./github/Homepage.webp)
+
+## Planned Updates
 
 - [ ] Searching for a recipe
 - [ ] Main page pagination
@@ -48,7 +50,7 @@ I wanted a quick and simple way to preserve my family's recipes. I tend to forge
 
 - Optimizing lighthouse performance by implementing compression utilities
 - Additional React Router concepts
-- Firebase interactions as a BaaS. 
+- Firebase interactions as a BaaS.
 - Auth, Firestore, CRUD, and Storage
 - Firebase hosting
 - Firebase rules
@@ -62,11 +64,11 @@ I wanted a quick and simple way to preserve my family's recipes. I tend to forge
 - Utilizing the React Context API (user auth)
 - Form validation with error throwing
 
-## Contact 
+## Contact
 
-- [Github Profile](https://github.com/PomPoko-lab "PomPoko-lab")
-- [Email](mailto:hello@pompoko.io "My Email")
-- [Portfolio/Website](https://pompoko.io/ "Portfolio")
+- [Github Profile](https://github.com/PomPoko-lab 'PomPoko-lab')
+- [Email](mailto:hello@pompoko.io 'My Email')
+- [Portfolio/Website](https://pompoko.io/ 'Portfolio')
 
 ## License
 
@@ -74,8 +76,8 @@ Copyright &copy; 2022, CraftyBi.
 
 ## Acknowledgments
 
-- [Design inspiration](https://www.behance.net/gallery/35747197/Resipi%28New-Recipe-website%29 "Resipi inspiration")
-- [Design inspiration](https://www.behance.net/gallery/106014453/Aroma-Recipe-Web-App "Aroma inspiration")
+- [Design inspiration](https://www.behance.net/gallery/35747197/Resipi%28New-Recipe-website%29 'Resipi inspiration')
+- [Design inspiration](https://www.behance.net/gallery/106014453/Aroma-Recipe-Web-App 'Aroma inspiration')
 
 ## Support
 

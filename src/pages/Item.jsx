@@ -84,7 +84,7 @@ const Item = () => {
 
   if (!isLoading && data)
     return (
-      <Container as='main' px={['0']} maxW='container.xl'>
+      <Container as='main' px={['0']} maxW='container.md'>
         <Suspense
           fallback={
             <Spinner
@@ -100,7 +100,7 @@ const Item = () => {
         >
           <Box
             as='section'
-            maxH={['16em']}
+            maxH={['16em', null, '20em', '25em', '40em']}
             overflow='hidden'
             position='relative'
             mb='6'
