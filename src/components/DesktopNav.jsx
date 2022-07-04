@@ -4,6 +4,7 @@ import {
   UnorderedList,
   Link,
   Button,
+  ListItem,
 } from '@chakra-ui/react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
@@ -48,27 +49,28 @@ const DesktopNav = () => {
         <Heading>Bite Diary</Heading>
       </Link>
       <UnorderedList listStyleType='none' display='flex' gap='6' ms='auto'>
-        <Link as={RouterLink} to='/' style={{ textDecoration: 'none' }}>
-          <Button as='li' variant='ghost'>
-            Home
-          </Button>
-        </Link>
-        <Link as={RouterLink} to='about' style={{ textDecoration: 'none' }}>
-          <Button as='li' variant='ghost'>
-            About
-          </Button>
-        </Link>
-        <Link as={RouterLink} to='login' style={{ textDecoration: 'none' }}>
-          <Button
-            as='li'
-            colorScheme='green'
-            onClick={handleClick}
-            isLoading={isLoading}
-            loadingText='Logging in..'
-          >
-            {user ? 'Sign Out' : 'Sign In'}
-          </Button>
-        </Link>
+        <ListItem>
+          <Link as={RouterLink} to='/' style={{ textDecoration: 'none' }}>
+            <Button variant='ghost'>Home</Button>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link as={RouterLink} to='about' style={{ textDecoration: 'none' }}>
+            <Button variant='ghost'>About</Button>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link as={RouterLink} to='login' style={{ textDecoration: 'none' }}>
+            <Button
+              colorScheme='green'
+              onClick={handleClick}
+              isLoading={isLoading}
+              loadingText='Logging in..'
+            >
+              {user ? 'Sign Out' : 'Sign In'}
+            </Button>
+          </Link>
+        </ListItem>
       </UnorderedList>
     </Container>
   );
