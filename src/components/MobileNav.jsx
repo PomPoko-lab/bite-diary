@@ -1,7 +1,5 @@
 import {
-  Container,
   Box,
-  Heading,
   UnorderedList,
   ListItem,
   Link,
@@ -14,18 +12,46 @@ import {
   DrawerBody,
   DrawerOverlay,
   DrawerCloseButton,
-} from '@chakra-ui/react/';
+} from '@chakra-ui/react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../store/UserContext';
 
 import { AiOutlineMenu } from 'react-icons/ai';
 import logoIcon from '../assets/smallIcon.webp';
 import brandName from '../assets/brandName.webp';
 
+// Firebase imports
+import { auth } from '../firebase/config';
+import { signOut } from 'firebase/auth';
+
 const MobileNav = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { user, dispatch } = useContext(UserContext);
+  const { isOpen, onClose, onOpen } = useDisclosure();
+
+  const navigate = useNavigate();
+
+  const handleClick = async () => {
+    try {
+      if (!user) {
+        navigate('login');
+        onClose();
+        return;
+      }
+      setIsLoading(true);
+      await signOut(auth);
+      dispatch({ type: 'LOGOUT' });
+    } catch (error) {
+      console.error(error.message);
+    } finally {
+      setIsLoading(false);
+      onClose();
+    }
+  };
+
   return (
-    <Box>
+    <Box as='nav'>
       <Box bg='gray.50' p='1' display='flex' alignItems='center' gap='4'>
         <Box
           as='button'
@@ -92,10 +118,12 @@ const MobileNav = () => {
               <ListItem py='3' px='2'>
                 <Button
                   as='button'
-                  onClick={handleLogOutClick}
+                  onClick={handleClick}
                   mt='auto'
                   w='full'
                   colorScheme='green'
+                  isLoading={isLoading}
+                  loadingText='Logging In..'
                 >
                   {user ? 'Sign Out' : 'Sign In'}
                 </Button>
