@@ -12,7 +12,7 @@ Editing a recipe and the pagination for the main recipe page are currently in pr
 
 - [Github Repo](https://github.com/PomPoko-lab/bite-diary 'Bite Diary Repo')
 
-- [Live](https://www.pompoko.io 'Live View')
+- [Live](https://recipes.pompoko.io 'Live View')
 
 ### Features
 
