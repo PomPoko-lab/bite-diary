@@ -16,7 +16,7 @@ import {
   Input,
   Heading,
 } from '@chakra-ui/react';
-import { useState, useEffect, lazy } from 'react';
+import { useState, useEffect } from 'react';
 
 import { AiFillEdit } from 'react-icons/ai';
 
@@ -107,7 +107,7 @@ const EditItemModal = ({ data, setData }) => {
 
       navigate(0);
     } catch (error) {
-      console.error(error.message);
+      setIsError(error.message);
     } finally {
       setIsLoading(false);
     }
