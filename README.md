@@ -20,7 +20,6 @@ Project development currently in progress.
 - View and search recipe postings
 - Update and remove a recipe
 - Browse for recipes
-- Create a recipe using an API. -- Not yet implemented.
 
 ## Screenshots
 
