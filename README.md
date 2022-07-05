@@ -6,7 +6,7 @@ A recipe diary designed to record family and friend recipes, mostly family delic
 
 ### Project Status
 
-Editing a recipe and the pagination for the main recipe page are currently in progress.
+Project development currently in progress.
 
 ### Links
 
