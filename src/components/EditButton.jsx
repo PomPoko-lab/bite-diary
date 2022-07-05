@@ -1,8 +1,8 @@
 import { Box, Icon, useDisclosure } from '@chakra-ui/react';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 
-const EditItemModal = lazy(() => import('../components/EditItemModal'));
+const EditItemModal = lazy(() => import('./EditItemModal'));
 
 const EditButton = ({ data }) => {
   const { onOpen, onClose, isOpen } = useDisclosure();
@@ -26,12 +26,14 @@ const EditButton = ({ data }) => {
       >
         <Icon as={AiFillEdit} color='blue.600' boxSize='8' />
       </Box>
-      <EditItemModal
-        onOpen={onOpen}
-        onClose={onClose}
-        isOpen={isOpen}
-        data={data}
-      />
+      <Suspense fallback={<p>Loading..</p>}>
+        <EditItemModal
+          onOpen={onOpen}
+          onClose={onClose}
+          isOpen={isOpen}
+          data={data}
+        />
+      </Suspense>
     </>
   );
 };

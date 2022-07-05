@@ -1,8 +1,8 @@
 import { Box, Icon, useDisclosure } from '@chakra-ui/react';
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
 
-const DeleteItemModal = lazy(() => import('../components/DeleteItemModal'));
+const DeleteItemModal = lazy(() => import('./DeleteItemModal'));
 
 const DeleteButton = () => {
   const { onOpen, onClose, isOpen } = useDisclosure();
@@ -26,7 +26,9 @@ const DeleteButton = () => {
       >
         <Icon as={AiFillDelete} color='red.400' boxSize='8' />
       </Box>
-      <DeleteItemModal onOpen={onOpen} onClose={onClose} isOpen={isOpen} />
+      <Suspense fallback={<p>Loading..</p>}>
+        <DeleteItemModal onOpen={onOpen} onClose={onClose} isOpen={isOpen} />
+      </Suspense>
     </>
   );
 };
