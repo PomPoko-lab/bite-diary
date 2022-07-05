@@ -12,7 +12,7 @@ Editing a recipe and the pagination for the main recipe page are currently in pr
 
 - [Github Repo](https://github.com/PomPoko-lab/bite-diary 'Bite Diary Repo')
 
-- [Live](https://www.pompoko.io 'Live View')
+- [Live](https://recipes.pompoko.io 'Live View')
 
 ### Features
 
@@ -46,6 +46,7 @@ Editing a recipe and the pagination for the main recipe page are currently in pr
 ## Project Roadmap
 
 - [x] Account Log in
+- [x] Post a recipe
 - [x] Browse for recipes
 - [x] Remove a recipe
 - [ ] Edit a recipe
@@ -74,7 +75,6 @@ I wanted a quick and simple way to preserve my family's recipes. I tend to forge
 - Firebase hosting
 - Firebase rules
 - Custom subdomain URL routing
-- Advanced CSS practice utilizing Chakra UI
 - Advanced CSS practice utilizing Chakra UI
 - CSS img srcset enabling responsive images and image performance optimizations
 - CSS loading image properties
