@@ -64,8 +64,7 @@ const SignIn = () => {
       gap='4'
       alignItems='center'
       borderRadius='lg'
-      h={['90vh', null, null, '40vh']}
-      mt={['0', null, null, '10%']}
+      mt={['0', null, null, '5%']}
       p={['2', null, null, '10']}
       shadow={['none', null, null, 'base']}
       border={['0', null, null, '1px solid rgba(0,0,0, 0.05)']}
