@@ -16,7 +16,7 @@ const cardStyles = {
   w: 'full',
 };
 
-const InstructionItem = ({ step, handleSubmitEdit, itemIndex }) => {
+const InstructionItem = ({ step, showEdit, handleSubmitEdit, itemIndex }) => {
   const [editItemShow, setEditItemShow] = useState(false);
 
   const handleClick = () => {
@@ -31,7 +31,8 @@ const InstructionItem = ({ step, handleSubmitEdit, itemIndex }) => {
         </ListItem>
       </Box>
       <EditInput
-        onToggle={editItemShow}
+        showEdit={editItemShow}
+        onToggle={handleClick}
         handleSubmitEdit={handleSubmitEdit}
         itemIndex={itemIndex}
       />

@@ -30,7 +30,8 @@ const IngredientItem = ({ item, handleSubmitEdit, itemIndex }) => {
         </ListItem>
       </Box>
       <EditInput
-        onToggle={editItemShow}
+        showEdit={editItemShow}
+        onToggle={handleClick}
         handleSubmitEdit={handleSubmitEdit}
         itemIndex={itemIndex}
       />

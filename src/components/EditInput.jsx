@@ -3,7 +3,18 @@ import { useRef } from 'react';
 
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 
-const EditInput = ({ onToggle, handleSubmitEdit, itemIndex }) => {
+const buttonStyles = {
+  boxSize: '6',
+  borderRadius: 'md',
+  _hover: {
+    bg: 'gray.50',
+    cursor: 'pointer',
+    transform: 'scale(1.2)',
+  },
+  transition: 'all 300ms',
+};
+
+const EditInput = ({ showEdit, onToggle, handleSubmitEdit, itemIndex }) => {
   const inputRef = useRef();
 
   const onConfirm = () => {
@@ -12,7 +23,7 @@ const EditInput = ({ onToggle, handleSubmitEdit, itemIndex }) => {
 
   return (
     <Box
-      display={`${onToggle ? 'flex' : 'none'}`}
+      display={`${showEdit ? 'flex' : 'none'}`}
       w='full'
       alignItems='center'
       gap='2'
@@ -22,10 +33,20 @@ const EditInput = ({ onToggle, handleSubmitEdit, itemIndex }) => {
       <Icon
         as={AiOutlineCheck}
         color='green.400'
-        boxSize='6'
-        onClick={onConfirm}
+        onClick={() => {
+          if (inputRef.current.value) {
+            onConfirm();
+          }
+          onToggle();
+        }}
+        {...buttonStyles}
       />
-      <Icon as={AiOutlineClose} color='red.400' boxSize='6' />
+      <Icon
+        as={AiOutlineClose}
+        color='red.400'
+        onClick={onToggle}
+        {...buttonStyles}
+      />
     </Box>
   );
 };
