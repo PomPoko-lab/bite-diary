@@ -1,13 +1,11 @@
 import {
   Box,
-  Icon,
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
   Container,
   Text,
   Button,
@@ -17,8 +15,6 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import { useState, useEffect } from 'react';
-
-import { AiFillEdit } from 'react-icons/ai';
 
 import { useParams, useNavigate } from 'react-router-dom';
 
@@ -30,7 +26,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import IngredientsList from './IngredientsList';
 import InstructionsList from './InstructionsList';
 
-const EditItemModal = ({ data, setData }) => {
+const EditItemModal = ({ data, isOpen, onOpen, onClose }) => {
   const [recTitle, setRecTitle] = useState('');
   const [recImg, setRecImg] = useState('');
   const [ingredients, setIngredients] = useState([]);
@@ -45,8 +41,6 @@ const EditItemModal = ({ data, setData }) => {
 
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleImgChange = (e) => {
     setImgError(null);
@@ -122,23 +116,6 @@ const EditItemModal = ({ data, setData }) => {
 
   return (
     <>
-      <Box
-        as='button'
-        position='absolute'
-        right='1em'
-        top='5em'
-        display='grid'
-        placeItems='center'
-        p='2'
-        bg='gray.100'
-        shadow='base'
-        borderRadius='full'
-        transition='all 300ms'
-        _hover={{ cursor: 'pointer', transform: 'scale(1.1)' }}
-        onClick={onOpen}
-      >
-        <Icon as={AiFillEdit} color='blue.600' boxSize='8' />
-      </Box>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

@@ -8,7 +8,7 @@ import {
   ListItem,
   Spinner,
 } from '@chakra-ui/react';
-import { useEffect, useState, useContext, lazy, Suspense } from 'react';
+import { useEffect, useState, useContext, Suspense } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { UserContext } from '../store/UserContext';
@@ -17,8 +17,8 @@ import { UserContext } from '../store/UserContext';
 import { db } from '../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 
-const EditItemModal = lazy(() => import('../components/EditItemModal'));
-const DeleteItemModal = lazy(() => import('../components/DeleteItemModal'));
+import EditButton from '../components/EditButton';
+import DeleteButton from '../components/DeleteButton';
 
 const cardStyles = {
   bg: 'gray.100',
@@ -125,8 +125,10 @@ const Item = () => {
               loading='lazy'
             />
             {/* Edit and Delete Button */}
-            {user && <EditItemModal data={data} setData={setData} />}
-            {user && <DeleteItemModal />}
+            {user && <EditButton data={data} />}
+            {user && <DeleteButton />}
+            {/* {user && <EditItemModal data={data} setData={setData} />}
+            {user && <DeleteItemModal />} */}
           </Box>
           <Box as='section'>
             <Heading as='h3' {...headingStyles}>
