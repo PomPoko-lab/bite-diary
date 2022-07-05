@@ -1,4 +1,4 @@
-import { useEffect, useState, lazy, Suspense } from 'react';
+import { useEffect, useState, lazy, Suspense, useContext } from 'react';
 import {
   Container,
   Box,
@@ -20,6 +20,9 @@ import heroMobile from '../assets/heroMobile.webp';
 
 // Component imports
 import FoodItem from '../components/FoodItem';
+import SearchBar from '../components/SearchBar';
+
+import { UserContext } from '../store/UserContext';
 
 // Lazy Loading
 const PostRecipe = lazy(() => import('../components/PostRecipe'));
@@ -27,6 +30,10 @@ const PostRecipe = lazy(() => import('../components/PostRecipe'));
 const Main = () => {
   const [foods, setFoods] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [search, setSearch] = useState('');
+
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     setIsLoading(true);
@@ -46,16 +53,19 @@ const Main = () => {
 
   return (
     <Box as='main'>
-      <Image
-        srcSet={`${heroMobile} 360w, ${heroDesktop} 1900w`}
-        src={heroMobile}
-        alt='Bite Diary Hero'
-        fit='cover'
-        w='full'
-        filter='brightness(0.6)'
-        loading='eager'
-        maxH={['40vh', null, '50vh']}
-      />
+      <Box position='relative'>
+        <Image
+          srcSet={`${heroMobile} 360w, ${heroDesktop} 1900w`}
+          src={heroMobile}
+          alt='Bite Diary Hero'
+          fit='cover'
+          w='full'
+          filter='brightness(0.6)'
+          loading='eager'
+          maxH={['40vh', null, '50vh']}
+        />
+        <SearchBar search={search} setSearch={setSearch} />
+      </Box>
       <Suspense
         fallback={
           <Spinner
@@ -104,13 +114,19 @@ const Main = () => {
           flexDirection={['column', null, 'row']}
           flexWrap={['nowrap', null, 'wrap']}
         >
-          <PostRecipe />
+          {user && <PostRecipe />}
           {foods &&
-            foods.map((item, i) => (
-              <Link key={`id-${i}`} as={RouterLink} to={`recipes/${item.id}`}>
-                <FoodItem item={item} />
-              </Link>
-            ))}
+            foods.map((item, i) => {
+              if (
+                !item.title.toLowerCase().includes(search.toLowerCase().trim())
+              )
+                return null;
+              return (
+                <Link key={`id-${i}`} as={RouterLink} to={`recipes/${item.id}`}>
+                  <FoodItem item={item} />
+                </Link>
+              );
+            })}
           {!foods.length && <Text fontSize='lg'>No recipes posted.</Text>}
         </Container>
       )}

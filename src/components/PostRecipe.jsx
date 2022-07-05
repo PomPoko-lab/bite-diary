@@ -21,7 +21,7 @@ import {
   Spinner,
   Button,
 } from '@chakra-ui/react';
-import { useState, useContext, lazy, Suspense } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Firebase imports
@@ -31,8 +31,6 @@ import { collection, addDoc } from 'firebase/firestore';
 
 // Styling Imports
 import { AiFillPlusCircle } from 'react-icons/ai';
-
-import { UserContext } from '../store/UserContext';
 
 // Component Imports
 const IngredientsList = lazy(() => import('./IngredientsList'));
@@ -52,8 +50,6 @@ const PostRecipe = () => {
 
   const [isError, setIsError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  const { user } = useContext(UserContext);
 
   const handleImgChange = (e) => {
     setImgError(null);
@@ -121,8 +117,6 @@ const PostRecipe = () => {
       setIsLoading(false);
     }
   };
-
-  if (!user) return;
 
   return (
     <>
