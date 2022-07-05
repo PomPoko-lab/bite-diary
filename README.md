@@ -50,7 +50,7 @@ Project development currently in progress.
 - [x] Browse for recipes
 - [x] Remove a recipe
 - [x] Edit a recipe
-- [ ] Searching for a recipe
+- [x] Searching for a recipe
 - [ ] Main page pagination
 - [ ] Recipe submission through an API
 
