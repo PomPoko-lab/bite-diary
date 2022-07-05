@@ -50,8 +50,8 @@ const PostRecipe = () => {
 
   const [imgError, setImgError] = useState(null);
 
-  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useContext(UserContext);
 

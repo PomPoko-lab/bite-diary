@@ -1,6 +1,11 @@
 import { Box, ListItem, Text } from '@chakra-ui/react';
+import { useState } from 'react';
 
-const IngredientItem = ({ item }) => {
+import EditInput from './EditInput';
+
+const IngredientItem = ({ item, handleSubmitEdit, itemIndex }) => {
+  const [editItemShow, setEditItemShow] = useState(false);
+
   const cardStyles = {
     bg: 'gray.50',
     border: '1px solid rgba(0,0,0,0.1)',
@@ -13,12 +18,23 @@ const IngredientItem = ({ item }) => {
     borderRadius: '1px',
   };
 
+  const handleClick = () => {
+    setEditItemShow(!editItemShow);
+  };
+
   return (
-    <Box {...cardStyles}>
-      <ListItem>
-        <Text>{item}</Text>
-      </ListItem>
-    </Box>
+    <>
+      <Box {...cardStyles} onClick={handleClick}>
+        <ListItem>
+          <Text>{item}</Text>
+        </ListItem>
+      </Box>
+      <EditInput
+        onToggle={editItemShow}
+        handleSubmitEdit={handleSubmitEdit}
+        itemIndex={itemIndex}
+      />
+    </>
   );
 };
 

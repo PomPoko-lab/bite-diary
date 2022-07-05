@@ -24,6 +24,16 @@ const cardStyles = {
 
 const InstructionsList = ({ instructions, setInstructions }) => {
   const inputRef = useRef(null);
+
+  const handleSubmitEdit = (itemIndex, newEdit) => {
+    setInstructions((prev) => {
+      const newArr = prev.map((ing, index) => {
+        return index === itemIndex ? newEdit : ing;
+      });
+      return newArr;
+    });
+  };
+
   const handleClick = (e) => {
     e.preventDefault();
     const currentInput = inputRef.current.value;
@@ -32,6 +42,7 @@ const InstructionsList = ({ instructions, setInstructions }) => {
     inputRef.current.value = '';
     inputRef.current.focus();
   };
+
   return (
     <Box>
       <Box
@@ -54,7 +65,12 @@ const InstructionsList = ({ instructions, setInstructions }) => {
       >
         <OrderedList w='full' display='flex' flexWrap='wrap' m='0'>
           {instructions.map((step, i) => (
-            <InstructionItem key={`step-${i}`} step={step} />
+            <InstructionItem
+              key={`step-${i}`}
+              step={step}
+              itemIndex={i}
+              handleSubmitEdit={handleSubmitEdit}
+            />
           ))}
         </OrderedList>
       </Box>

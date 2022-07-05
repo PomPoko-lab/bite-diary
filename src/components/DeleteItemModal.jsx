@@ -48,7 +48,7 @@ const DeleteItemModal = () => {
         as='button'
         position='absolute'
         right='1em'
-        top='1em'
+        top='9em'
         display='grid'
         placeItems='center'
         p='2'

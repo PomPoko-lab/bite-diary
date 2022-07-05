@@ -1,4 +1,7 @@
 import { Box, ListItem, Text } from '@chakra-ui/react';
+import { useState } from 'react';
+
+import EditInput from './EditInput';
 
 const cardStyles = {
   bg: 'gray.50',
@@ -13,13 +16,26 @@ const cardStyles = {
   w: 'full',
 };
 
-const InstructionItem = ({ step }) => {
+const InstructionItem = ({ step, handleSubmitEdit, itemIndex }) => {
+  const [editItemShow, setEditItemShow] = useState(false);
+
+  const handleClick = () => {
+    setEditItemShow(!editItemShow);
+  };
+
   return (
-    <Box {...cardStyles}>
-      <ListItem ms='5'>
-        <Text>{step}</Text>
-      </ListItem>
-    </Box>
+    <>
+      <Box {...cardStyles} onClick={handleClick}>
+        <ListItem ms='5'>
+          <Text>{step}</Text>
+        </ListItem>
+      </Box>
+      <EditInput
+        onToggle={editItemShow}
+        handleSubmitEdit={handleSubmitEdit}
+        itemIndex={itemIndex}
+      />
+    </>
   );
 };
 

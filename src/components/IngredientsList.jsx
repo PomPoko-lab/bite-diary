@@ -25,6 +25,15 @@ const cardStyles = {
 const IngredientsList = ({ ingredients, setIngredients }) => {
   const inputRef = useRef(null);
 
+  const handleSubmitEdit = (itemIndex, newEdit) => {
+    setIngredients((prev) => {
+      const newArr = prev.map((ing, index) => {
+        return index === itemIndex ? newEdit : ing;
+      });
+      return newArr;
+    });
+  };
+
   const handleClick = (e) => {
     e.preventDefault();
     const currentInput = inputRef.current.value;
@@ -62,7 +71,12 @@ const IngredientsList = ({ ingredients, setIngredients }) => {
           listStyleType='none'
         >
           {ingredients.map((item, i) => (
-            <IngredientItem key={`item-${i}`} item={item} />
+            <IngredientItem
+              key={`item-${i}`}
+              item={item}
+              itemIndex={i}
+              handleSubmitEdit={handleSubmitEdit}
+            />
           ))}
           {/* <IngredientItem /> */}
         </UnorderedList>

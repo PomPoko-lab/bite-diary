@@ -15,7 +15,7 @@ const SignUp = lazy(() => import('./pages/SignUp'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function App() {
-  const { user } = useContext(UserContext);
+  const { user, authIsReady } = useContext(UserContext);
 
   return (
     <Box
@@ -48,16 +48,21 @@ function App() {
           />
         }
       >
-        <Header />
-        <Routes>
-          <Route path='/' element={<Main />} />
-          <Route path='/recipes/:id' element={<Item />} />
-          <Route path='about' element={<About />} />
-          {!user && <Route path='login' element={<SignIn />} />}
-          {!user && <Route path='register' element={<SignUp />} />}
-          <Route path='404' element={<NotFound />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
+        {authIsReady && (
+          <>
+            <Header />
+            <Routes>
+              <Route path='/' element={<Main />} />
+              <Route path='/recipes/:id' element={<Item />} />
+              <Route path='about' element={<About />} />
+              {!user && <Route path='login' element={<SignIn />} />}
+              {!user && <Route path='register' element={<SignUp />} />}
+              <Route path='404' element={<NotFound />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </>
+        )}
+
         <Footer />
       </Suspense>
     </Box>

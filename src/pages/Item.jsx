@@ -17,6 +17,7 @@ import { UserContext } from '../store/UserContext';
 import { db } from '../firebase/config';
 import { doc, getDoc } from 'firebase/firestore';
 
+const EditItemModal = lazy(() => import('../components/EditItemModal'));
 const DeleteItemModal = lazy(() => import('../components/DeleteItemModal'));
 
 const cardStyles = {
@@ -123,7 +124,8 @@ const Item = () => {
               filter='brightness(0.8)'
               loading='lazy'
             />
-            {/* Delete Button */}
+            {/* Edit and Delete Button */}
+            {user && <EditItemModal data={data} setData={setData} />}
             {user && <DeleteItemModal />}
           </Box>
           <Box as='section'>
