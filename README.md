@@ -51,8 +51,8 @@ Project development currently in progress.
 - [x] Remove a recipe
 - [x] Edit a recipe
 - [x] Searching for a recipe
-- [ ] Main page pagination
 - [ ] Recipe submission through an API
+- [ ] Main page pagination
 
 ## Built with
 
