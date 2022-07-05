@@ -49,7 +49,7 @@ Editing a recipe and the pagination for the main recipe page are currently in pr
 - [x] Post a recipe
 - [x] Browse for recipes
 - [x] Remove a recipe
-- [ ] Edit a recipe
+- [x] Edit a recipe
 - [ ] Searching for a recipe
 - [ ] Main page pagination
 - [ ] Recipe submission through an API
