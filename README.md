@@ -59,7 +59,6 @@ Project development currently in progress.
 - ChakraUI
 - React Router
 - Firebase
-- NPM
 
 ## Purpose of this project
 
